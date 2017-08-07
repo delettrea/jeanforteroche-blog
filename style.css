@@ -326,9 +326,6 @@ form .button{
     margin: 35px 0;
 }
 
-#mceu_29{
-    width: 90%;
-}
 
 /*--- MEDIA QUERIES ---*/
 
@@ -381,6 +378,9 @@ form .button{
     }
     .oneArticle{
         width: 80%;
+    }
+    .page{
+        display: block;
     }
 }
 
