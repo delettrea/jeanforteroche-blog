@@ -22,6 +22,7 @@ header, footer{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: rgba(211, 211, 211, 0.11);
 
 }
 
@@ -134,12 +135,15 @@ h1{
 .page{
     display: flex;
     flex-direction: column;
-    background-color: rgba(211, 211, 211, 0.11);
 }
 
 /*--- SECTION 1 ---*/
 
-.article, .oneArticle{
+#section1{
+    background-color: rgba(211, 211, 211, 0.11);
+}
+
+.article{
     padding: 1px 12px 35px 12px;
     background-color: white;
     margin-bottom: 20px;
@@ -148,6 +152,11 @@ h1{
 .article a p{
     color: rgba(0,0,0,0.4);
     margin: 26px 0;
+}
+
+.oneArticle{
+    padding: 1px 12px 35px 12px;
+    background-color: white;
 }
 
 .oneArticle h2{
@@ -239,8 +248,9 @@ h2{
 }
 
 .offlineComment{
-    height:115px;
-    padding: 0 20px;
+    height: 115px;
+    padding: 1px 20px;
+    background-color: rgba(211, 211, 211, 0.24);
 }
 
 .buttonNewArticle{
@@ -284,6 +294,18 @@ h2{
 .editBiography{
     text-align: center;
 }
+
+/*--- COMMENT ---*/
+
+.allComment{
+    background-color: rgba(211, 211, 211, 0.24);
+    padding-top: 20px;
+}
+
+.grey{
+    color: #808080;
+}
+
 
 /*--- FOOTER ---*/
 
@@ -352,7 +374,7 @@ form .button{
     }
 }
 
-@media (min-width: 1000px){
+@media (min-width: 1250px){
     /*- DIV PAGE -*/
     .page{
         flex-direction: row;
@@ -368,6 +390,7 @@ form .button{
     #section1{
         width: 900px;
         margin-left: 11px;
+        float: left;
     }
     .portrait{
         width: 350px;
@@ -375,12 +398,17 @@ form .button{
     }
     #section2{
         width: 350px;
+        float: left;
     }
     .oneArticle{
         width: 80%;
     }
     .page{
         display: block;
+    }
+    footer{
+        float: left;
+        width: 100%;
     }
 }
 

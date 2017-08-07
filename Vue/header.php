@@ -34,4 +34,3 @@ session_start();
         <a href="index.php"><img src="img/test2.jpg" alt="blog" /></a>
     </div>
 </header>
-<div class="page">

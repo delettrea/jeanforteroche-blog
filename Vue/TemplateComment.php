@@ -3,19 +3,25 @@
 class TemplateComment extends TemplateArticle {
 
     public function htmlAllComment(){
-        while ($data = $this->request->fetch()) {
-            ?>
-            <div class="comment">
-                <p><span class="author_comment"><?= self::seeEmail($data) ?> </span> <br> <span class="span_comment">le <?php echo $data['com_day']; ?>
-                    à <?php echo $data['com_hour']; ?></p></span>
-                <p><?php echo $data['comment']; ?></p>
-                <?php
-                echo self::commentEdit($data);
-                self::buttonAllCommentAdmin($data);
-                ?>
-            </div>
+        ?>
+        <div class="allComment">
             <?php
-        }
+            while ($data = $this->request->fetch()) {
+                ?>
+                <div class="comment">
+                    <p><span class="author_comment"><?= self::seeEmail($data) ?> </span> <br> <span class="span_comment">le <?php echo $data['com_day']; ?>
+                            à <?php echo $data['com_hour']; ?></p></span>
+                    <p><?php echo $data['comment']; ?></p>
+                    <?php
+                    echo self::commentEdit($data);
+                    self::buttonAllCommentAdmin($data);
+                    ?>
+                </div>
+                <?php
+            }
+            ?>
+        </div>
+        <?php
     }
 
     public function seeEmail($data){
@@ -33,16 +39,16 @@ class TemplateComment extends TemplateArticle {
                 ?>
                 <div>
                 <div class="online">
-                <a class="button" id="online" href="<?= 'index.php?action=online&number=' . $data['id_article'] . '&numberCom=' . $data['id_com'] . '' ?>">Mettre en ligne</a>
+                    <a class="button" id="online" href="<?= 'index.php?action=online&number=' . $data['id_article'] . '&numberCom=' . $data['id_com'] . '' ?>">Mettre en ligne</a>
                 </div>
                 <?php
             }
             ?>
             <div class="editComment">
-            <a class="button" id="editCom" href="<?= 'index.php?action=editComment&number=' . $data['id_article'] . '&numberCom=' . $data['id_com'] . '' ?>">Modifier le commentaire</a>
+                <a class="button" id="editCom" href="<?= 'index.php?action=editComment&number=' . $data['id_article'] . '&numberCom=' . $data['id_com'] . '' ?>">Modifier le commentaire</a>
             </div>
             <div class="delete">
-            <a class="button" id="deleteCom" href="<?= 'index.php?action=deleteComment&number=' . $data['id_article'] . '&numberCom=' . $data['id_com'] . '' ?>">Supprimer</a>
+                <a class="button" id="deleteCom" href="<?= 'index.php?action=deleteComment&number=' . $data['id_article'] . '&numberCom=' . $data['id_com'] . '' ?>">Supprimer</a>
             </div>
             </div>
             <?php
@@ -98,14 +104,24 @@ class TemplateComment extends TemplateArticle {
     }
 
     public function seeOffline(){
-        while ($data = $this->request->fetch()) {
-            ?>
-            <p>Article :<?= $data['title'] ?></p>
-            <p>Auteur du commentaire : <?= $data['author'] ?></p>
-            <p>Commentaire : <?= $data['comment'] ?></p>
+        ?>
+        <div class="allComment">
             <?php
-            self::buttonAllCommentAdmin($data);
-        }
+            while ($data = $this->request->fetch()) {
+                ?>
+                <div class="comment">
+                    <p> <span class="grey">Article :</span><?= $data['title'] ?></p>
+                    <p> <span class="grey">Auteur du commentaire :</span> <?= $data['author'] ?></p>
+                    <p> <span class="grey">Commentaire :</span> <?= $data['comment'] ?></p>
+                    <?php
+                    self::buttonAllCommentAdmin($data);
+                    ?>
+                </div>
+                <?php
+            }
+            ?>
+        </div>
+        <?php
     }
 
 }
