@@ -1,4 +1,4 @@
-
+</div>
 <footer>
     <p>2017 <a href="">Jean Forteroche</a> - <a href="">Plan du site</a> - <a href="">Mentions légales</a> -
     <?php

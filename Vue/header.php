@@ -34,3 +34,4 @@ session_start();
         <a href="index.php"><img src="img/test2.jpg" alt="blog" /></a>
     </div>
 </header>
+<div <?php  if(isset($_SESSION['authorization_user'])){ echo 'class="adminPage"'; } elseif(isset($_GET['action'])){ echo 'class="action"'; }else{ echo 'class="page"'; }  ?> >

@@ -381,16 +381,15 @@ form .button{
         justify-content: center;
     }
     .sizeBlog img{
-        max-height: 75vh;
+        max-width: 1300px;
         width: auto;
     }
     .article{
         width: 900px;
     }
     #section1{
-        width: 900px;
-        margin-left: 11px;
-        float: left;
+        width: 928px;
+        text-align: justify;
     }
     .portrait{
         width: 350px;
@@ -398,17 +397,18 @@ form .button{
     }
     #section2{
         width: 350px;
-        float: left;
     }
     .oneArticle{
         width: 80%;
     }
     .page{
-        display: block;
+        display: flex;
+        flex-direction: row;
+        background-color: rgba(211, 211, 211, 0.11);
     }
-    footer{
-        float: left;
-        width: 100%;
+    .action #section2{
+        width: 1000px;
+        margin: auto;
     }
 }
 
