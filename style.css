@@ -132,7 +132,7 @@ h1{
 
 /*--- DIV PAGE ---*/
 
-.page{
+.page, .adminPage{
     display: flex;
     flex-direction: column;
 }
@@ -374,29 +374,22 @@ form .button{
     }
 }
 
-@media (min-width: 1250px){
+@media (min-width: 1000px){
     /*- DIV PAGE -*/
-    .page{
-        flex-direction: row;
-        justify-content: center;
-    }
     .sizeBlog img{
-        max-width: 1300px;
+        max-width: 1020px;
         width: auto;
     }
-    .article{
-        width: 900px;
-    }
     #section1{
-        width: 928px;
+        width: 700px;
         text-align: justify;
     }
     .portrait{
-        width: 350px;
+        width: 300px;
         height: auto;
     }
     #section2{
-        width: 350px;
+        width: 300px;
     }
     .oneArticle{
         width: 80%;
@@ -404,11 +397,19 @@ form .button{
     .page{
         display: flex;
         flex-direction: row;
+        justify-content: center;
         background-color: rgba(211, 211, 211, 0.11);
     }
     .action #section2{
         width: 1000px;
         margin: auto;
+    }
+    .adminPage #section2{
+        display: inline-block;
+        vertical-align: top;
+    }
+    .adminPage #section1{
+        display: inline-block;
     }
 }
 

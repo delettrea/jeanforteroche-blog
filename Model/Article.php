@@ -7,10 +7,10 @@ class Article extends Sql {
     public $sqlAdd = "INSERT INTO article(author, title, article, date) VALUES (:author,:title,:article,NOW())";
     public $sqlViewOneArticle = "SELECT id, author, title, article,DATE_FORMAT(date, '%d/%m/%Y') AS day,DATE_FORMAT(date, '%Hh%i') AS hour FROM article WHERE id =:number";
     public $sqlViewEdit = "SELECT id, author, title, article FROM article WHERE id =:number";
-    protected $sqlViewAllArticle = "SELECT `id`,article.author,`title`,`article`, article.date, DATE_FORMAT(article.date,'%d/%m/%Y') AS day, DATE_FORMAT(article.date,'%Hh%i') AS hour,`id_com`, `id_article`, comment.date AS dateCom, COUNT(article.id) AS `nbCommentaire`, GROUP_CONCAT(DISTINCT comment.date) AS dateCom 
+    protected $sqlViewAllArticle = "SELECT `id`,article.author,`title`,`article`, article.date, DATE_FORMAT(article.date,'%d/%m/%Y') AS day, DATE_FORMAT(article.date,'%Hh%i') AS hour,`id_com`, `id_article`, comment.date AS dateCom,GROUP_CONCAT(DISTINCT comment.date) AS dateCom, SUM(IF(comment.online = 'on',1,0)) AS `nbCommentaire` 
                                   FROM `article` LEFT JOIN comment 
                                   ON article.id = comment.id_article
-                                  GROUP BY `id` ORDER BY article.date DESC ";
+                                  GROUP BY `id` ORDER BY article.date DESC";
 
 
     public function testNumber(){

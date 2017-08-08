@@ -64,7 +64,7 @@ class TemplateArticle extends  Biography {
     private function testNumberCommentArticle($data){
         $holds = $data['dateCom'];
         $holds = explode(',', $holds);
-        if($data['id_com'] < 1){
+        if($data['nbCommentaire'] < 1){
             ?><a href="<?= 'index.php?action=article&number='.$data['id'].''?>"><p>Aucun commentaire</p></a>
             <?php
         }
