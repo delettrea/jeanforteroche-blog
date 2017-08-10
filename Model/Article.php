@@ -13,6 +13,10 @@ class Article extends Sql {
                                   GROUP BY `id` ORDER BY article.date DESC";
 
 
+    /**
+     * Permet de tester si le $_GET est bien un nombre.
+     * @return array Retourne un tableau avec le nombre.
+     */
     public function testNumber(){
         $recup = $_GET['number'];
         if(preg_match('#[0-9]#', $recup)) {
@@ -21,11 +25,18 @@ class Article extends Sql {
         }
     }
 
+    /**
+     * Test si le $_Post n'est pas vide sur chacun de ses paramètres.
+     * @return bool
+     */
     public function testArticle(){
         $return = (!empty($_POST) || !empty($_POST['author'] && !empty($_POST['title']) && !empty($_POST['article'])));
         return $return;
     }
 
+    /**
+     * @return array Retourne un tableau prêt pour compléter une requête SQL.
+     */
     public function checkValue(){
         extract($_POST);
         $title = htmlspecialchars($title);
@@ -34,6 +45,9 @@ class Article extends Sql {
 
     }
 
+    /**
+     * @return array Retourne un tableau avec des paramètres pour les requêtes SQL avec le numéro en $_Get.
+     */
     public function testAndCheck(){
         $testAndCheck = array_merge(self::testNumber(), self::checkValue());
         return $testAndCheck;

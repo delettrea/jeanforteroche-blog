@@ -25,7 +25,6 @@ else // Non envoyé
     echo "Votre message n'a pas pu être envoyé";
 }
 
-
 include("Vue/footer.php");
 
 

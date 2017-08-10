@@ -78,6 +78,9 @@ class Controller extends AdminController {
         elseif ($this->action == "sendEditBiography"){
             self::sendEditBiographyAdmin();
         }
+        elseif ($this->action == "sendEmail"){
+            self::sendEmail();
+        }
     }
 
 
