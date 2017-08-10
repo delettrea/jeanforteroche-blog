@@ -68,8 +68,10 @@ class TemplateComment extends TemplateArticle {
                     <label>Votre email : </label><input type="email" name="email" placeholder="Votre email" value="<?php echo self::keepValueComment('author','comment','email') ?>" />
                     <?php self::error('email') ?>
                 </div>
-                <textarea name="comment" class="comment" placeholder="Ecrivez votre commentaire ici" value="<?php echo self::keepValueComment('email','author','comment') ?>"></textarea>
-                <?php self::error('comment') ?>
+                <div class="textarea">
+                    <textarea name="comment" class="comment" placeholder="Ecrivez votre commentaire ici" value="<?php echo self::keepValueComment('email','author','comment') ?>"></textarea>
+                    <?php self::error('comment') ?>
+                </div>
                 <input class="button" type="submit" value="Ajouter ce commentaire" />
             </form>
         </section>
@@ -83,8 +85,10 @@ class TemplateComment extends TemplateArticle {
             <section>
                 <form class="form" method="post" action=<?= "index.php?action=sendEditComment&number=".$data['id_article']."&numberCom=" . $data['id_com'] . ""?>>
                     <h3>Modifier un commentaire</h3>
-                    <textarea name="comment" class="comment" ><?= $data['comment'] ?></textarea>
-                    <?php self::error('comment') ?>
+                    <div class="textarea">
+                        <textarea name="comment" class="comment" ><?= $data['comment'] ?></textarea>
+                        <?php self::error('comment') ?>
+                    </div>
                     <input class="button" type="submit" value="Modifier le commentaire" />
                 </form>
             </section>

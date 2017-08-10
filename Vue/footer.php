@@ -1,6 +1,6 @@
 </div>
 <footer>
-    <p>2017 <a href="">Jean Forteroche</a> - <a href="">Plan du site</a> - <a href="">Mentions légales</a> -
+    <p>2017 <a href="">Jean Forteroche</a> - <a href="">Mentions légales</a> -
     <?php
     if(empty($_SESSION['authorization_user'])) {
         echo "<a class='' href='index.php?action=login'>Espace d'administration</a>";
@@ -12,9 +12,5 @@
 
 </footer>
 </body>
-<script>
-
-
-</script>
 
 </html>

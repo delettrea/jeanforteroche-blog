@@ -87,8 +87,10 @@ class TemplateArticle extends  Biography {
                     <label>Titre de votre article : </label><input type="text" name="title" placeholder="Titre de l'article" value="<?php echo self::keepValue('article','title') ?>" "/>
                     <?php self::error('title') ?>
                 </div>
-                <textarea name="article" class="article" placeholder="Ecrivez votre article ici"><?php echo self::keepValue('title','article') ?></textarea>
-                <?php self::error('article') ?>
+                <div class="textarea">
+                    <textarea name="article" class="article" placeholder="Ecrivez votre article ici"><?php echo self::keepValue('title','article') ?></textarea>
+                    <?php self::error('article') ?>
+                </div>
                 <input class="button" type="submit" value="Créer l'article" />
             </form>
         </section>
@@ -106,8 +108,10 @@ class TemplateArticle extends  Biography {
                         <label>Titre de votre article : </label><input type="text" name="title" placeholder="Titre de l'article" value="<?php echo $data['title'] ?>" "/>
                         <?php self::error('title') ?>
                     </div>
-                    <textarea name="article" class="article"><?php echo $data['article'] ?></textarea>
-                    <?php self::error('article') ?>
+                    <div class="textarea">
+                        <textarea name="article" class="article"><?php echo $data['article'] ?></textarea>
+                        <?php self::error('article') ?>
+                    </div>
                     <input class="button" type="submit" value="Modifier l'article" />
                 </form>
             </section>
@@ -126,7 +130,7 @@ class TemplateArticle extends  Biography {
                 <p><?= $data['article'] ?></p>
                 <h6>Article écrit par <?= $data['author'] ?> le <?= $data['day'] ?> à <?= $data['hour'] ?></h6>
                 <div class="addComment">
-                <a class="button" id="ajoutCommentaire" href="<?= "index.php?action=newComment&number=" . $data['id'] . "" ?>">Ajouter un commentaire</a>
+                    <a class="button" id="ajoutCommentaire" href="<?= "index.php?action=newComment&number=" . $data['id'] . "" ?>">Ajouter un commentaire</a>
                 </div>
                 <?php
                 self::buttonOneArticle($type)
@@ -140,11 +144,11 @@ class TemplateArticle extends  Biography {
         if($type == "admin"){
             ?>
             <div class="editComment">
-            <a class="button" id="modifier" href="<?="index.php?action=edit&number=".$data['id']."" ?>">Modifier l'article</a>
+                <a class="button" id="modifier" href="<?="index.php?action=edit&number=".$data['id']."" ?>">Modifier l'article</a>
             </div>
-                <br>
+            <br>
             <div class="delete">
-            <a class="button" id="supprimer" href="<?= "index.php?action=delete&number=" . $data['id'] . "" ?>">Supprimer l'article</a>
+                <a class="button" id="supprimer" href="<?= "index.php?action=delete&number=" . $data['id'] . "" ?>">Supprimer l'article</a>
             </div>
             <?php
         }

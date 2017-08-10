@@ -27,7 +27,6 @@ class TemplateBiography extends TemplateLogin{
             ?>
             <div class="biography">
                 <a class="button" href="index.php?action=editBiography">Modifier ma biographie</a>
-
             </div>
             <?php
         }
@@ -40,9 +39,11 @@ class TemplateBiography extends TemplateLogin{
             <div class="editBiography">
                 <h2>Modifier ma biography</h2>
                 <form class="form" method="post" action=<?= "index.php?action=sendEditBiography" ?>>
-                <textarea name="biography"><?php echo $data['biography'] ?></textarea>
-                    <?php self::error('biographie') ?>
-                <input class="button" type="submit" value="Modifier ma biographie" />
+                    <div class="textarea">
+                        <textarea name="biography"><?php echo $data['biography'] ?></textarea>
+                        <?php self::error('biographie') ?>
+                    </div>
+                    <input class="button" type="submit" value="Modifier ma biographie" />
                 </form>
             </div>
             <?php
@@ -63,7 +64,9 @@ class TemplateBiography extends TemplateLogin{
                 <div class="objet">
                     <label>Sujet de votre contact : </label><input type="text" name="objet" placeholder="Titre de l'article" value="" "/>
                 </div>
-                <textarea name="mail" class="article"></textarea>
+                <div class="textarea">
+                    <textarea name="mail" class="article"></textarea>
+                </div>
                 <input class="button" type="submit" value="Contacter l'auteur" />
             </form>
         </section>
