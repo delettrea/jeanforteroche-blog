@@ -3,6 +3,10 @@
 
 class TemplateArticle extends  Biography {
 
+    /**
+     * Permet de visualiser tous les articles.
+     * @param $type Fonction admin().
+     */
     protected function htmlAllArticle($type){
         ?>
         <section id="section1">
@@ -31,6 +35,10 @@ class TemplateArticle extends  Biography {
         <?php
     }
 
+    /**
+     * Afficher le bouton de création d'article de l'administrateur.
+     * @param $type $type hérité de la fonction htmlAllArticle().
+     */
     public function buttonNewArticle($type){
         if($type == "admin"){
             ?>
@@ -41,7 +49,11 @@ class TemplateArticle extends  Biography {
         }
     }
 
-
+    /**
+     * Afficher les boutons de gestion de l'administrateur.
+     * @param $type $type hérité de la fonction htmlAllArticle().
+     * @param $data $data hérité de la fonction htmlAllArticle().
+     */
     public function buttonArticleAdmin($type, $data){
         if($type == "admin") {
             ?>
@@ -61,6 +73,10 @@ class TemplateArticle extends  Biography {
         }
     }
 
+    /**
+     * Permet de vérifier le nombre de commentaires dans chaque article.
+     * @param $data résultat d'une requête sql.
+     */
     private function testNumberCommentArticle($data){
         $holds = $data['dateCom'];
         $holds = explode(',', $holds);
@@ -78,6 +94,9 @@ class TemplateArticle extends  Biography {
         }
     }
 
+    /**
+     * Permet de visualiser de quoi créer un nouvel article.
+     */
     public function newArticle(){
         ?>
         <section>
@@ -98,6 +117,9 @@ class TemplateArticle extends  Biography {
 
     }
 
+    /**
+     * Permet de visualiser un formulaire de modification d'article.
+     */
     public function editArticle(){
         while ($data = $this->request->fetch()) {
             ?>
@@ -119,6 +141,10 @@ class TemplateArticle extends  Biography {
         }
     }
 
+    /**
+     * Permet de visualiser un seul article.
+     * @param $type Fonction admin().
+     */
     public function oneArticle($type){
         while ($data = $this->request->fetch()){
             if(!empty($_GET['online'])&& $_GET['online'] == "wait" ){
@@ -140,6 +166,10 @@ class TemplateArticle extends  Biography {
         }
     }
 
+    /**
+     * Afficher les boutons de gestion de l'administrateur pour un article.
+     * @param $type $type hérité de la fonction oneArticle().
+     */
     public function buttonOneArticle($type){
         if($type == "admin"){
             ?>

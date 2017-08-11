@@ -5,6 +5,10 @@ class Login extends Comment {
     public $errorAdmin = "<p class='error'> Vous devez être administrateur pour acceder à cette page </p>";
     public $sqlLogin = "SELECT id, authorization_user, login, COUNT(id) AS findLogin FROM users WHERE `login` =:login AND `password` =:password";
 
+    /**
+     * Envoie un message d'erreur si le name de l'input passé en paramètre est vide.
+     * @param $name Nom du champ a vérifié.
+     */
     public function error($name){
         if(isset($_POST[$name]) && empty($_POST[$name])) {
             if($name == "login") {
@@ -34,13 +38,25 @@ class Login extends Comment {
         }
     }
 
-
+    /**
+     * Garde en mémoire un paramètre remplit si un autre est vide.
+     * @param $empty Paramètre potentiellement vide.
+     * @param $keep Paramètre à garder en mémoire.
+     * @return mixed paramètre à garder en mémoire.
+     */
     public function keepValue($empty, $keep){
         if(empty($_POST[$empty]) && !empty($_POST[$keep])){
             return $_POST[$keep];
         }
     }
 
+    /**
+     * Garde en mémoire un paramètre remplit si un autre est vide sinon renvoie ce qui est sur la bdd.
+     * @param $data Donnée sql.
+     * @param $empty Paramètre potentiellement vide.
+     * @param $keep Paramètre à garder en mémoire.
+     * @return mixed paramètre à afficher.
+     */
     public function keepValueData($data, $empty, $keep){
         if(empty($_POST)){
             return $data;
@@ -50,7 +66,10 @@ class Login extends Comment {
         }
     }
 
-
+    /**
+     * Verifie les données envoyées via le formulaire.
+     * @return array Tableau prêt pour une requête sql.
+     */
     public function checkValueLogin(){
         extract($_POST);
         $login = htmlspecialchars($login);
@@ -60,6 +79,10 @@ class Login extends Comment {
         return $loginArray;
     }
 
+    /**
+     * Permet de vérifier si tous les paramètres de connexion sont exacts.
+     * @param $function Fonction à lancer si les données sont fausses.
+     */
     public function log($function){
         while ($data = $this->request->fetch()){
             if($data['findLogin'] == 1){
@@ -74,11 +97,18 @@ class Login extends Comment {
         }
     }
 
+    /**
+     * Deconnexion de l'utilisateur.
+     */
     public function logout(){
         session_destroy();
         header('location: index.php');
     }
 
+    /**
+     * Permet de vérifier si la personne connectée est administrateur ou non.
+     * @return string Retourne admin ou member.
+     */
     public function admin(){
         if(empty($_SESSION)){
             return 'member';
@@ -91,6 +121,9 @@ class Login extends Comment {
         }
     }
 
+    /**
+     * Renvoi une phrase d'erreur si un non administrateur essaye d'aller sur une page qu'il n'a pas l'autorisation.
+     */
     public function errorTest(){
         echo $this->errorAdmin;
     }

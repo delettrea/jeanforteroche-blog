@@ -5,6 +5,9 @@ class Controller extends AdminController {
     public $action;
 
 
+    /**
+     * Fonction permettant le lancement des autres fonctions.
+     */
     public function blog(){
         if (isset($_GET['action'])){
             $this->action = $_GET['action'];
@@ -79,7 +82,7 @@ class Controller extends AdminController {
             self::sendEditBiographyAdmin();
         }
         elseif ($this->action == "sendEmail"){
-            self::sendEmail();
+            self::prepareEmail();
         }
     }
 

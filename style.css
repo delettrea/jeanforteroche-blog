@@ -28,6 +28,7 @@ header, footer{
 
 .error{
     color: red;
+    text-align: center;
 }
 
 .bottom-error{
@@ -337,7 +338,7 @@ footer a{
     text-align: center;
 }
 
-.email, .name, .objet{
+.email, .name, .object{
     display: flex;
     flex-direction: column;
     padding: 12px 0;
@@ -345,8 +346,12 @@ footer a{
     text-align: center;
 }
 
-.email input, .name input, .objet input{
+.email input, .name input{
     width: 250px;
+}
+
+.object input{
+    width: 300px;
 }
 
 .newComment label{

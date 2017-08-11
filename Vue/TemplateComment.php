@@ -2,6 +2,9 @@
 
 class TemplateComment extends TemplateArticle {
 
+    /**
+     * Permet de visualiser tous les commentaire d'un article.
+     */
     public function htmlAllComment(){
         ?>
         <div class="allComment">
@@ -24,6 +27,11 @@ class TemplateComment extends TemplateArticle {
         <?php
     }
 
+    /**
+     * Permet de savoir si l'utilisateur est administrateur ou non pour afficher l'email des personnes ayant laissé un commentaire.
+     * @param $data Requête sql.
+     * @return string Renvoie le nom de la personne avec ou non son email.
+     */
     public function seeEmail($data){
         if(!empty($_SESSION) && $_SESSION['authorization_user'] == "admin"){
             return "<a class='e-mail' href='".$data['email']."'>".$data['author']."</a>";
@@ -33,6 +41,10 @@ class TemplateComment extends TemplateArticle {
         }
     }
 
+    /**
+     * Afficher les boutons de gestion de l'administrateur pour les commentaires.
+     * @param $data $data requête sql heritée de htmlAllComment().
+     */
     public function buttonAllCommentAdmin($data){
         if(!empty($_SESSION) && $_SESSION['authorization_user'] == "admin") {
             if($data['online'] == "off") {
@@ -55,6 +67,9 @@ class TemplateComment extends TemplateArticle {
         }
     }
 
+    /**
+     * Permet de visualiser de quoi créer un nouveau commentaire.
+     */
     public function NewComment(){
         ?>
         <section class="newComment">
@@ -79,6 +94,9 @@ class TemplateComment extends TemplateArticle {
 
     }
 
+    /**
+     * Permet de visualiser de quoi éditer un nouveau commentaire.
+     */
     public function editComment(){
         while ($data = $this->request->fetch()){
             ?>
@@ -97,16 +115,25 @@ class TemplateComment extends TemplateArticle {
 
     }
 
+    /**
+     * Permet d'avertir l'administrateur s'il a des commentaires à valider.
+     */
     public function offlineComment(){
-        if (!empty($_SESSION) && $_SESSION['authorization_user'] == "admin") {
-            ?>
-            <div class="offlineComment">
-                <p>Vous avez des commentaires hors lignes à valider.</p> <a class="button" href="index.php?action=offlineComment">Voir les commentaires</a>
-            </div>
-            <?php
+        $nb = $this->request->rowCount();
+        if($nb >= 1){
+            if (!empty($_SESSION) && $_SESSION['authorization_user'] == "admin") {
+                ?>
+                <div class="offlineComment">
+                    <p>Vous avez des commentaires hors lignes à valider.</p> <a class="button" href="index.php?action=offlineComment">Voir les commentaires</a>
+                </div>
+                <?php
+            }
         }
     }
 
+    /**
+     * Permet à l'administrateur de voir les commentaires hors ligne.
+     */
     public function seeOffline(){
         ?>
         <div class="allComment">

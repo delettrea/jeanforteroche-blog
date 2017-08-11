@@ -8,7 +8,7 @@ class Comment extends Article {
                                   WHERE id =:number AND (online = 'on' OR online=:online) ORDER BY comment.date DESC";
     public $sqlDeleteComment = "DELETE FROM comment WHERE id_com =:numberCom";
     public $sqlDeleteAllComment = "DELETE FROM comment WHERE id_article=:number";
-    public $sqlAddComment = "INSERT INTO comment(id_article, author, email, comment, date, edit) VALUES (:number,:author,:email,:comment,NOW(), 'off')";
+    public $sqlAddComment = "INSERT INTO comment(id_article, author, email, comment, date, edit, online) VALUES (:number,:author,:email,:comment,NOW(), 'off', 'off')";
     public $sqlViewEditComment = "SELECT id_com,id_article, comment FROM `comment` WHERE id_com=:numberCom";
     public $sqlEditComment = "UPDATE comment SET comment=:comment,date=NOW(), edit='on' WHERE id_com=:numberCom";
     public $sqlOnlineComment = "UPDATE comment SET online='on'WHERE id_com=:numberCom";

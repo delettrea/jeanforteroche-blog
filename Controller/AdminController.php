@@ -2,6 +2,10 @@
 
 class AdminController extends HomeController{
 
+    /**
+     * Permet de tester si les function sont lancées par l'administrateur ou non.
+     * @param $function Fonction à tester.
+     */
     public function testAdmin($function){
         if (!empty($_SESSION) && $_SESSION['authorization_user'] == "admin"){
             self::$function();
