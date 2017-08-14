@@ -11,7 +11,7 @@ class TemplateArticle extends  Biography {
         ?>
         <section id="section1">
             <?php
-            self::buttonNewArticle($type);
+            $this->buttonNewArticle($type);
             while ($data = $this->request->fetch()){
                 ?>
                 <div class="article">
@@ -21,11 +21,11 @@ class TemplateArticle extends  Biography {
                     <h6>Article écrit par <?= $data['author'] ?> le <?= $data['date'] ?>
                         à <?= $data['hour'] ?></h6>
                     <?php
-                    self::testNumberCommentArticle($data);
+                    $this->testNumberCommentArticle($data);
                     ?>
                     <a class="button" id="ajoutCommentaire" href="<?= "index.php?action=newComment&number=" . $data['id'] . "" ?>">Ajouter un commentaire</a>
                     <?php
-                    self::buttonArticleAdmin($type, $data);
+                    $this->buttonArticleAdmin($type, $data);
                     ?>
                 </div>
                 <?php
@@ -103,12 +103,12 @@ class TemplateArticle extends  Biography {
             <form class="form" method="post" action="index.php?action=sendNew">
                 <h2>Ajouter un article</h2>
                 <div class="title">
-                    <label>Titre de votre article : </label><input type="text" name="title" placeholder="Titre de l'article" value="<?php echo self::keepValue('article','title') ?>" "/>
-                    <?php self::error('title') ?>
+                    <label>Titre de votre article : </label><input type="text" name="title" placeholder="Titre de l'article" value="<?php echo $this->keepValue('article','title') ?>" "/>
+                    <?php $this->error('title') ?>
                 </div>
                 <div class="textarea">
-                    <textarea name="article" class="article" placeholder="Ecrivez votre article ici"><?php echo self::keepValue('title','article') ?></textarea>
-                    <?php self::error('article') ?>
+                    <textarea name="article" class="article" placeholder="Ecrivez votre article ici"><?php echo $this->keepValue('title','article') ?></textarea>
+                    <?php $this->error('article') ?>
                 </div>
                 <input class="button" type="submit" value="Créer l'article" />
             </form>
@@ -128,11 +128,11 @@ class TemplateArticle extends  Biography {
                     <h2>Editer un article</h2>
                     <div class="title">
                         <label>Titre de votre article : </label><input type="text" name="title" placeholder="Titre de l'article" value="<?php echo $data['title'] ?>" "/>
-                        <?php self::error('title') ?>
+                        <?php $this->error('title') ?>
                     </div>
                     <div class="textarea">
                         <textarea name="article" class="article"><?php echo $data['article'] ?></textarea>
-                        <?php self::error('article') ?>
+                        <?php $this->error('article') ?>
                     </div>
                     <input class="button" type="submit" value="Modifier l'article" />
                 </form>
@@ -159,7 +159,7 @@ class TemplateArticle extends  Biography {
                     <a class="button" id="ajoutCommentaire" href="<?= "index.php?action=newComment&number=" . $data['id'] . "" ?>">Ajouter un commentaire</a>
                 </div>
                 <?php
-                self::buttonOneArticle($type)
+                $this->buttonOneArticle($type)
                 ?>
             </div>
             <?php

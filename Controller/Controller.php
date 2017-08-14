@@ -11,78 +11,78 @@ class Controller extends AdminController {
     public function blog(){
         if (isset($_GET['action'])){
             $this->action = $_GET['action'];
-            self::action();
+            $this->action();
         }
         else{
-            self::seeAllArticle();
-            self::prepareBiography();
+            $this->seeAllArticle();
+            $this->prepareBiography();
         }
 
     }
 
     public function action(){
         if ($this->action == "new") {
-            self::createArticle();
+            $this->createArticle();
         }
         elseif ($this->action == "sendNew"){
-            self::sendCreateArticle();
+            $this->sendCreateArticle();
         }
         elseif($this->action == "edit"){
-            self::editThisArticle();
+            $this->editThisArticle();
         }
         elseif ($this->action == "sendEdit"){
-            self::sendEditArticle();
+            $this->sendEditArticle();
         }
         elseif ($this->action == "article"){
-            self::justOneArticle();
+            $this->justOneArticle();
         }
         elseif ($this->action == "delete"){
-            self::deleteArticle();
+            $this->deleteArticle();
         }
         elseif($this->action == "deleteComment"){
-            self::deleteComment();
+            $this->deleteComment();
         }
         elseif($this->action == "newComment"){
-            self::createComment();
+            $this->createComment();
         }
         elseif($this->action == "sendNewComment"){
-            self::sendNewComment();
+            $this->sendNewComment();
         }
         elseif ($this->action == "editComment"){
-            self::editThisComment();
+            $this->editThisComment();
         }
         elseif ($this->action == "sendEditComment"){
-            self::sendEditComment();
+            $this->sendEditComment();
         }
         elseif ($this->action == "online"){
-            self::onlineComment();
+            $this->onlineComment();
         }
         elseif ($this->action == "login"){
-            self::login();
+            $this->login();
         }
         elseif ($this->action == "sendLogin"){
-            self::sendLogin();
+            $this->sendLogin();
         }
         elseif ($this->action == "logout"){
-            self::logout();
+            $this->logout();
         }
         elseif ($this->action == "offlineComment"){
-            self::seeOfflineComment();
+            $this->seeOfflineComment();
         }
         elseif ($this->action == "about"){
-            self::prepareBiography();
+            $this->prepareBiography();
         }
         elseif ($this->action == "contact"){
-            self::contact();
+            $this->contact();
         }
         elseif ($this->action == "editBiography"){
-            self::editBiographyAdmin();
+            $this->editBiographyAdmin();
         }
         elseif ($this->action == "sendEditBiography"){
-            self::sendEditBiographyAdmin();
+            $this->sendEditBiographyAdmin();
         }
         elseif ($this->action == "sendEmail"){
-            self::prepareEmail();
+            $this->prepareEmail();
         }
     }
 

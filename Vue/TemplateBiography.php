@@ -17,7 +17,7 @@ class TemplateBiography extends TemplateContact {
 
             <?php
             echo '<p class="biographie">'.$data2['biography'].'</p>';
-            self::buttonBiography();
+            $this->buttonBiography();
             ?>
         </section>
         <?php
@@ -49,7 +49,7 @@ class TemplateBiography extends TemplateContact {
                 <form class="form" method="post" action=<?= "index.php?action=sendEditBiography" ?>>
                     <div class="textarea">
                         <textarea name="biography"><?php echo $data['biography'] ?></textarea>
-                        <?php self::error('biographie') ?>
+                        <?php $this->error('biographie') ?>
                     </div>
                     <input class="button" type="submit" value="Modifier ma biographie" />
                 </form>

@@ -23,7 +23,7 @@ class Contact extends Login{
      * Envoie un mail suite au formulaire de contact.
      */
     public function sendEmail(){
-        self::message();
+        $this->message();
         $destinataire = $this->destinataire;
         $expediteur = $this->expediteur;
         $objet = $this->objet;

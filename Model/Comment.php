@@ -76,7 +76,7 @@ class Comment extends Article {
      * @return array Retourne tableau avec le $_Post de vérifié et le numero de l'article.
      */
     public function testNumberAndCheckComment(){
-        $testAndCheck = array_merge(self::testNumber(), self::checkValueComment());
+        $testAndCheck = array_merge($this->testNumber(), $this->checkValueComment());
         return $testAndCheck;
     }
 
@@ -84,7 +84,7 @@ class Comment extends Article {
      * @return array Retourne tableau avec le $_Post de vérifié et le numero du commentaire.
      */
     public function testAndCheckComment(){
-        $testAndCheck = array_merge(self::testNumberCom(), self::checkValueComment());
+        $testAndCheck = array_merge($this->testNumberCom(), $this->checkValueComment());
         return $testAndCheck;
     }
 
@@ -92,12 +92,12 @@ class Comment extends Article {
      * @return array Retourne tableau avec le commentaire de vérifié et le numero du commentaire.
      */
     public function testAndCheckEditComment(){
-        $testAndCheck = array_merge(self::testNumberCom(), self::checkValueEditComment());
+        $testAndCheck = array_merge($this->testNumberCom(), $this->checkValueEditComment());
         return $testAndCheck;
     }
 
     public function getNumber(){
-        extract(self::testNumber());
+        extract($this->testNumber());
         $getNumber = $number;
         return $getNumber;
     }
@@ -118,12 +118,12 @@ class Comment extends Article {
     public function commentAdmin(){
         if(!empty($_SESSION) && $_SESSION['authorization_user'] == "admin"){
             $on = array(':online' => 'off');
-            $commentAdmin = array_merge(self::testNumber(), $on);
+            $commentAdmin = array_merge($this->testNumber(), $on);
             return $commentAdmin;
         }
         else{
             $on = array(':online' => 'on');
-            $commentAdmin = array_merge(self::testNumber(), $on);
+            $commentAdmin = array_merge($this->testNumber(), $on);
             return $commentAdmin;
         }
     }

@@ -8,26 +8,26 @@ class HomeController extends TemplateBiography {
      * @param $sql Requête sql.
      */
     public function prepareSeeAllArticle($sql){
-        self::sqlPrepare($this->sqlOfflineComment, self::emptyArray());
-        self::offlineComment();
-        self::sqlPrepare($sql, self::emptyArray());
-        self::htmlAllArticle(self::admin());
+        $this->sqlPrepare($this->sqlOfflineComment, $this->emptyArray());
+        $this->offlineComment();
+        $this->sqlPrepare($sql, $this->emptyArray());
+        $this->htmlAllArticle($this->admin());
     }
 
     /**
      * Prepare la fonction pour visualiser la biographie de l'auteur.
      */
     public function prepareBiography(){
-        self::sqlPrepare($this->sqlBiography, self::emptyArray());
-        self::seeBiography();
+        $this->sqlPrepare($this->sqlBiography, $this->emptyArray());
+        $this->seeBiography();
     }
 
     /**
      * Prepare la fonction pour éditer la biographie de l'auteur.
      */
     public function prepareEditBiography(){
-        self::sqlPrepare($this->sqlBiography, self::emptyArray());
-        self::editBiography();
+        $this->sqlPrepare($this->sqlBiography, $this->emptyArray());
+        $this->editBiography();
     }
 
     /**
@@ -35,11 +35,11 @@ class HomeController extends TemplateBiography {
      */
     public function sendEditBiography(){
         if(isset($_POST['biography']) && !empty($_POST['biography'])){
-            self::sqlPrepare($this->sqlEditBiography, self::arrayEditBiography());
+            $this->sqlPrepare($this->sqlEditBiography, $this->arrayEditBiography());
             header('Location: index.php');
         }
         else{
-            self::editBiographyAdmin();
+            $this->editBiographyAdmin();
         }
     }
 
@@ -47,7 +47,7 @@ class HomeController extends TemplateBiography {
      * Prepare la fonction pour créé un nouvel article.
      */
     public function prepareCreateArticle(){
-        self::newArticle();
+        $this->newArticle();
     }
 
     /**
@@ -55,11 +55,11 @@ class HomeController extends TemplateBiography {
      */
     public function prepareEmail(){
     if(isset($_POST) && !empty($_SESSION['name']) && !empty($_SESSION['email']) && !empty($_SESSION['objet'])&& !empty($_SESSION['mail'])){
-        self::sendEmail();
+        $this->sendEmail();
         header('Location: index.php');
     }
     else{
-        self::contact();
+        $this->contact();
     }
 }
 
@@ -68,11 +68,11 @@ class HomeController extends TemplateBiography {
      */
     public function sendNewArticle(){
         if (!empty($_POST['title'] && !empty($_POST['article']))) {
-            self::sqlPrepare($this->sqlAdd, self::checkValue());
+            $this->sqlPrepare($this->sqlAdd, $this->checkValue());
             header('Location: index.php');
         }
         else {
-            self::prepareCreateArticle();
+            $this->prepareCreateArticle();
         }
     }
 
@@ -80,8 +80,8 @@ class HomeController extends TemplateBiography {
      * Prepare l'édition d'un article.
      */
     public function prepareEditThisArticle(){
-        self::sqlPrepare($this->sqlViewEdit, self::testNumber());
-        self::editArticle();
+        $this->sqlPrepare($this->sqlViewEdit, $this->testNumber());
+        $this->editArticle();
     }
 
     /**
@@ -89,11 +89,11 @@ class HomeController extends TemplateBiography {
      */
     public function prepareSendEditArticle(){
         if (!empty($_POST['title'] && !empty($_POST['article']))) {
-            self::sqlPrepare($this->sqlEdit, self::testAndCheck());
+            $this->sqlPrepare($this->sqlEdit, $this->testAndCheck());
             header('Location: index.php');
         }
         else{
-            self::prepareEditThisArticle();
+            $this->prepareEditThisArticle();
         }
     }
 
@@ -101,18 +101,18 @@ class HomeController extends TemplateBiography {
      * Prépare la fonction pour afficher un article et ses commentaires.
      */
     public function justOneArticle(){
-        self::sqlPrepare($this->sqlViewOneArticle, self::testNumber());
-        self::oneArticle(self::admin());
-        self::sqlPrepare($this->sqlAllComment, self::commentAdmin());
-        self::htmlAllComment();
+        $this->sqlPrepare($this->sqlViewOneArticle, $this->testNumber());
+        $this->oneArticle($this->admin());
+        $this->sqlPrepare($this->sqlAllComment, $this->commentAdmin());
+        $this->htmlAllComment();
     }
 
     /**
      * Prepare la fonction pour supprimer les articles ainsi que tous ces commentaires.
      */
     public function prepareDeleteArticle(){
-        self::sqlPrepare($this->sqlDeleteAllComment, self::testNumber());
-        self::sqlPrepare($this->sqlDelete, self::testNumber());
+        $this->sqlPrepare($this->sqlDeleteAllComment, $this->testNumber());
+        $this->sqlPrepare($this->sqlDelete, $this->testNumber());
         header('Location: index.php');
     }
 
@@ -120,36 +120,36 @@ class HomeController extends TemplateBiography {
      * Prepare la fonction pour supprimer des commentaires.
      */
     public function prepareDeleteComment(){
-        self::sqlPrepare($this->sqlDeleteComment, self::testNumberCom());
-        self::justOneArticle();
+        $this->sqlPrepare($this->sqlDeleteComment, $this->testNumberCom());
+        $this->justOneArticle();
     }
 
     /**
      * Prepare la fonction pour éditer des commentaires.
      */
     public function prepareEditComment(){
-        self::sqlPrepare($this->sqlViewEditComment, self::testNumberCom());
-        self::editComment();
+        $this->sqlPrepare($this->sqlViewEditComment, $this->testNumberCom());
+        $this->editComment();
     }
 
     /**
      * Prepare la fonction pour créer des commentaires.
      */
     public function createComment(){
-        self::testNumber();
-        self::NewComment();
+        $this->testNumber();
+        $this->NewComment();
     }
 
     /**
      * Prepare la fonction pour envoyer le nouveau commentaire.
      */
     public function sendNewComment(){
-        if(self::testComment()){
-            self::sqlPrepare($this->sqlAddComment, self::testNumberAndCheckComment());
-            header('location: index.php?action=article&number='.self::getNumber().'&online=wait');
+        if($this->testComment()){
+            $this->sqlPrepare($this->sqlAddComment, $this->testNumberAndCheckComment());
+            header('location: index.php?action=article&number='.$this->getNumber().'&online=wait');
         }
         else {
-            self::createComment();
+            $this->createComment();
         }
     }
 
@@ -158,11 +158,11 @@ class HomeController extends TemplateBiography {
      */
     public function prepareSendEditComment(){
         if (!empty($_POST['comment'])) {
-            self::sqlPrepare($this->sqlEditComment, self::testAndCheckEditComment());
-            header('Location: index.php?action=article&number='.self::getNumber().'');
+            $this->sqlPrepare($this->sqlEditComment, $this->testAndCheckEditComment());
+            header('Location: index.php?action=article&number='.$this->getNumber().'');
         }
         else{
-            self::editThisComment();
+            $this->editThisComment();
         }
     }
 
@@ -170,23 +170,23 @@ class HomeController extends TemplateBiography {
      * Prepare la fonction pour mettre en ligne un article.
      */
     public function prepareOnlineComment(){
-        self::sqlPrepare($this->sqlOnlineComment, self::testNumberCom());
-        header('Location: index.php?action=article&number='.self::getNumber().'');
+        $this->sqlPrepare($this->sqlOnlineComment, $this->testNumberCom());
+        header('Location: index.php?action=article&number='.$this->getNumber().'');
     }
 
     /**
      * Prepare la fonction pour se connecter au site.
      */
     public function login(){
-        self::htmlLogin();
+        $this->htmlLogin();
     }
 
     /**
      * Prépare la fonction qui vérifie si les données de connexion sont exactes.
      */
     public function sendLogin(){
-        self::sqlPrepare($this->sqlLogin, self::checkValueLogin());
-        self::log(self::login());
+        $this->sqlPrepare($this->sqlLogin, $this->checkValueLogin());
+        $this->log($this->login());
         header('Location: index.php');
     }
 
@@ -194,8 +194,8 @@ class HomeController extends TemplateBiography {
      * Prepare la fonction pour visualiser les commentaires hors ligne.
      */
     public function prepareSeeOfflineComment(){
-        self::sqlPrepare($this->sqlOfflineComment, self::emptyArray());
-            self::seeOffline();
+        $this->sqlPrepare($this->sqlOfflineComment, $this->emptyArray());
+            $this->seeOffline();
 
     }
 

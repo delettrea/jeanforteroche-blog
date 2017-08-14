@@ -12,12 +12,12 @@ class TemplateComment extends TemplateArticle {
             while ($data = $this->request->fetch()) {
                 ?>
                 <div class="comment">
-                    <p><span class="author_comment"><?= self::seeEmail($data) ?> </span> <br> <span class="span_comment">le <?php echo $data['com_day']; ?>
+                    <p><span class="author_comment"><?= $this->seeEmail($data) ?> </span> <br> <span class="span_comment">le <?php echo $data['com_day']; ?>
                             à <?php echo $data['com_hour']; ?></p></span>
                     <p><?php echo $data['comment']; ?></p>
                     <?php
-                    echo self::commentEdit($data);
-                    self::buttonAllCommentAdmin($data);
+                    echo $this->commentEdit($data);
+                    $this->buttonAllCommentAdmin($data);
                     ?>
                 </div>
                 <?php
@@ -73,19 +73,19 @@ class TemplateComment extends TemplateArticle {
     public function NewComment(){
         ?>
         <section class="newComment">
-            <form class="form" method="post" action="index.php?action=sendNewComment&number=<?= self::getNumber()?>">
+            <form class="form" method="post" action="index.php?action=sendNewComment&number=<?= $this->getNumber()?>">
                 <h3>Ajouter un commentaire</h3>
                 <div class="author">
-                    <label>Votre nom : </label><input type="text" name="author" placeholder="Auteur du commentaire" value="<?php echo self::keepValueComment('email','comment','author') ?>" />
-                    <?php self::error('author') ?>
+                    <label>Votre nom : </label><input type="text" name="author" placeholder="Auteur du commentaire" value="<?php echo $this->keepValueComment('email','comment','author') ?>" />
+                    <?php $this->error('author') ?>
                 </div>
                 <div class="email">
-                    <label>Votre email : </label><input type="email" name="email" placeholder="Votre email" value="<?php echo self::keepValueComment('author','comment','email') ?>" />
-                    <?php self::error('email') ?>
+                    <label>Votre email : </label><input type="email" name="email" placeholder="Votre email" value="<?php echo $this->keepValueComment('author','comment','email') ?>" />
+                    <?php $this->error('email') ?>
                 </div>
                 <div class="textarea">
-                    <textarea name="comment" class="comment" placeholder="Ecrivez votre commentaire ici" value="<?php echo self::keepValueComment('email','author','comment') ?>"></textarea>
-                    <?php self::error('comment') ?>
+                    <textarea name="comment" class="comment" placeholder="Ecrivez votre commentaire ici" value="<?php echo $this->keepValueComment('email','author','comment') ?>"></textarea>
+                    <?php $this->error('comment') ?>
                 </div>
                 <input class="button" type="submit" value="Ajouter ce commentaire" />
             </form>
@@ -105,7 +105,7 @@ class TemplateComment extends TemplateArticle {
                     <h3>Modifier un commentaire</h3>
                     <div class="textarea">
                         <textarea name="comment" class="comment" ><?= $data['comment'] ?></textarea>
-                        <?php self::error('comment') ?>
+                        <?php $this->error('comment') ?>
                     </div>
                     <input class="button" type="submit" value="Modifier le commentaire" />
                 </form>
@@ -145,7 +145,7 @@ class TemplateComment extends TemplateArticle {
                     <p> <span class="grey">Auteur du commentaire :</span> <?= $data['author'] ?></p>
                     <p> <span class="grey">Commentaire :</span> <?= $data['comment'] ?></p>
                     <?php
-                    self::buttonAllCommentAdmin($data);
+                    $this->buttonAllCommentAdmin($data);
                     ?>
                 </div>
                 <?php

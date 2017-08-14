@@ -8,7 +8,7 @@ class AdminController extends HomeController{
      */
     public function testAdmin($function){
         if (!empty($_SESSION) && $_SESSION['authorization_user'] == "admin"){
-            self::$function();
+            $this->$function();
         }
         else{
             echo $this->errorAdmin;
@@ -17,55 +17,55 @@ class AdminController extends HomeController{
     }
 
     public function seeAllArticle(){
-        self::prepareSeeAllArticle($this->sqlViewAllArticle);
+        $this->prepareSeeAllArticle($this->sqlViewAllArticle);
     }
 
     public function sendCreateArticle(){
-        self::testAdmin('sendNewArticle');
+        $this->testAdmin('sendNewArticle');
     }
 
     public function createArticle(){
-        self::testAdmin('prepareCreateArticle');
+        $this->testAdmin('prepareCreateArticle');
     }
 
     public function editThisArticle(){
-        self::testAdmin('prepareEditThisArticle');
+        $this->testAdmin('prepareEditThisArticle');
     }
 
     public function sendEditArticle(){
-        self::testAdmin('prepareSendEditArticle');
+        $this->testAdmin('prepareSendEditArticle');
     }
 
     public function deleteArticle(){
-        self::testAdmin('prepareDeleteArticle');
+        $this->testAdmin('prepareDeleteArticle');
     }
 
     public function editThisComment(){
-        self::testAdmin('prepareEditComment');
+        $this->testAdmin('prepareEditComment');
     }
 
     public function sendEditComment(){
-        self::testAdmin('prepareSendEditComment');
+        $this->testAdmin('prepareSendEditComment');
     }
 
     public function deleteComment(){
-        self::testAdmin('prepareDeleteComment');
+        $this->testAdmin('prepareDeleteComment');
     }
 
     public function onlineComment(){
-        self::testAdmin('prepareOnlineComment');
+        $this->testAdmin('prepareOnlineComment');
     }
 
     public function seeOfflineComment(){
-        self::testAdmin('prepareSeeOfflineComment');
+        $this->testAdmin('prepareSeeOfflineComment');
     }
 
     public function editBiographyAdmin(){
-        self::testAdmin('prepareEditBiography');
+        $this->testAdmin('prepareEditBiography');
     }
 
     public function sendEditBiographyAdmin(){
-        self::testAdmin('sendEditBiography');
+        $this->testAdmin('sendEditBiography');
     }
 
 

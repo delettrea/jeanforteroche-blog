@@ -11,12 +11,12 @@ class TemplateLogin extends TemplateComment {
             <div>
             <h3>Connexion</h3>
                 <div class="pseudo">
-            <label>Pseudo : </label><input type="text" name="login" value="<?php echo self::keepValue('password','login') ?>"/>
-                <?php self::error('login') ?>
+            <label>Pseudo : </label><input type="text" name="login" value="<?php echo $this->keepValue('password','login') ?>"/>
+                <?php $this->error('login') ?>
                 </div>
             <div class="password">
             <label>Mot de passe : </label><input type="password" name="password"/>
-                <?php self::error('password') ?>
+                <?php $this->error('password') ?>
             </div>
             <input class="button" type="submit" value="Connexion" />
             </div>

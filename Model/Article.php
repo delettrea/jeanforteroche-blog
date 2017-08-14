@@ -49,7 +49,7 @@ class Article extends Sql {
      * @return array Retourne un tableau avec des paramètres pour les requêtes SQL avec le numéro en $_Get.
      */
     public function testAndCheck(){
-        $testAndCheck = array_merge(self::testNumber(), self::checkValue());
+        $testAndCheck = array_merge($this->testNumber(), $this->checkValue());
         return $testAndCheck;
     }
 
