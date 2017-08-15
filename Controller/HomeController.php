@@ -1,6 +1,6 @@
 <?php
 
-class HomeController extends TemplateBiography {
+class HomeController extends TemplateLegal {
 
 
     /**
