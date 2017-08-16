@@ -62,7 +62,7 @@ class TemplateArticle extends  Biography {
                     <a class="button" id="modifier" href="index.php?action=edit&number=<?= $data['id']?> ">Modifier l'article</a>
                 </div>
                 <div class="delete">
-                    <a class="button" id="supprimer" href="<?= "index.php?action=delete&number=" . $data['id'] . "" ?>">Supprimer l'article</a>
+                    <a class="button" id="supprimer" href="<?= "index.php?action=confirmDelete&number=" . $data['id'] . "" ?>">Supprimer l'article</a>
                 </div>
             </div>
             <?php
@@ -182,6 +182,27 @@ class TemplateArticle extends  Biography {
                 <a class="button" id="supprimer" href="<?= "index.php?action=delete&number=" . $data['id'] . "" ?>">Supprimer l'article</a>
             </div>
             <?php
+        }
+    }
+
+    public function htmlDeleteArticle(){
+        if(isset($_GET['number']) && preg_match('#[0-9]#',$_GET['number'])){
+            ?>
+            <div class="confirmDelete">
+                <p class="error">Souhaitez vous vraiment supprimer l'article <?= $_GET['number']?> ?</p>
+                <div class="buttonAdmin">
+                    <div class="no">
+                        <a class="button" id="no" href="index.php">Non</a>
+                    </div>
+                    <div class="delete">
+                        <a class="button" id="supprimer" href="<?= "index.php?action=delete&number=" . $_GET['number'] . "" ?>">Oui</a>
+                    </div>
+                </div>
+            </div>
+            <?php
+        }
+        else{
+            echo '<p class="error">Il est impossible de supprimer cet article</p>';
         }
     }
 }

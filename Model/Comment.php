@@ -24,7 +24,7 @@ class Comment extends Article {
         return $allComment;
     }
 
-    public function deleteComment(){
+    public function deleteThisComment(){
         $deleteComment = $this->sqlPrepare2($this->sqlDeleteAllComment, $this->testNumber());
         return $deleteComment;
     }

@@ -121,7 +121,7 @@ class AdminController extends HomeController{
      * Prepare la fonction pour supprimer des commentaires.
      */
     public function prepareDeleteComment(){
-        $this->deleteComment();
+        $this->deleteThisComment();
         $this->justOneArticle();
     }
 
@@ -174,6 +174,14 @@ class AdminController extends HomeController{
         else{
             $this->prepareEditBiography();
         }
+    }
+
+    public function confirmDeleteArticle(){
+        $this->testAdmin('htmlDeleteArticle');
+    }
+
+    public function confirmDeleteComment(){
+        $this->testAdmin('htmlDeleteComment');
     }
 
 

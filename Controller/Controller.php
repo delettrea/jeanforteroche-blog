@@ -39,11 +39,17 @@ class Controller extends AdminController {
         elseif ($this->action == "delete"){
             $this->deleteArticle();
         }
+        elseif ($this->action == "confirmDelete"){
+            $this->htmlDeleteArticle();
+        }
         elseif($this->action == "deleteComment"){
             $this->deleteComment();
         }
+        elseif ($this->action == "confirmDeleteComment"){
+            $this->confirmDeleteArticle();
+        }
         elseif($this->action == "newComment"){
-            $this->createComment();
+            $this->confirmDeleteComment();
         }
         elseif($this->action == "sendNewComment"){
             $this->sendNewComment();

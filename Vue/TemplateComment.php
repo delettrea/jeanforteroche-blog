@@ -61,7 +61,7 @@ class TemplateComment extends TemplateArticle {
                 <a class="button" id="editCom" href="<?= 'index.php?action=editComment&number=' . $data['id_article'] . '&numberCom=' . $data['id_com'] . '' ?>">Modifier le commentaire</a>
             </div>
             <div class="delete">
-                <a class="button" id="deleteCom" href="<?= 'index.php?action=deleteComment&number=' . $data['id_article'] . '&numberCom=' . $data['id_com'] . '' ?>">Supprimer</a>
+                <a class="button" id="deleteCom" href="<?= 'index.php?action=confirmDeleteComment&number=' . $data['id_article'] . '&numberCom=' . $data['id_com'] . '' ?>">Supprimer</a>
             </div>
             </div>
             <?php
@@ -156,6 +156,27 @@ class TemplateComment extends TemplateArticle {
             ?>
         </div>
         <?php
+    }
+
+    public function htmlDeleteComment(){
+        if((isset($_GET['numberCom']) && isset($_GET['number'])) && preg_match('#[0-9]#',$_GET['number']) && preg_match('#[0-9]#',$_GET['numberCom'])){
+            ?>
+            <div class="confirmDelete">
+                <p class="error">Souhaitez vous vraiment supprimer ce commentaire <?= $_GET['numberCom']?> ?</p>
+                <div class="buttonAdmin">
+                    <div class="no">
+                        <a class="button" id="no" href="index.php">Non</a>
+                    </div>
+                    <div class="delete">
+                        <a class="button" id="deleteCom" href="<?= 'index.php?action=deleteComment&number=' . $_GET['number'] . '&numberCom=' . $_GET['numberCom'] . '' ?>">Oui</a>
+                    </div>
+                </div>
+            </div>
+            <?php
+        }
+        else{
+            echo '<p class="error">Il est impossible de supprimer ce commentaire</p>';
+        }
     }
 
 }

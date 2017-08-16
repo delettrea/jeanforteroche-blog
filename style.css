@@ -317,6 +317,20 @@ h2{
     color: #808080;
 }
 
+/*--- delete ---*/
+
+.confirmDelete{
+    min-height: 400px;
+    width: 100%;
+    max-width: 1000px;
+    background-color: white;
+}
+
+.confirmDelete .buttonAdmin{
+    display: flex;
+    justify-content: space-around;
+}
+
 
 /*--- FOOTER ---*/
 
