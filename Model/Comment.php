@@ -16,6 +16,44 @@ class Comment extends Article {
                                  FROM `comment` INNER JOIN article ON comment.id_article = article.id 
                                  WHERE comment.online = 'off' ORDER BY date DESC";
 
+
+
+
+    public function allComment(){
+        $allComment = $this->sqlPrepare2($this->sqlAllComment, $this->commentAdmin());
+        return $allComment;
+    }
+
+    public function deleteComment(){
+        $deleteComment = $this->sqlPrepare2($this->sqlDeleteAllComment, $this->testNumber());
+        return $deleteComment;
+    }
+
+    public function editComment(){
+        $editComment = $this->sqlPrepare2($this->sqlViewEdit, $this->testNumber());
+        return $editComment;
+    }
+
+    public function sendEditComment(){
+        $sendEditComment = $this->sqlPrepare2($this->sqlEditComment, $this->checkValueEditComment('testNumberCom'));
+        return $sendEditComment;
+    }
+
+    public function newComment(){
+        $newComment = $this->sqlPrepare2($this->sqlAddComment, $this->checkValueComment('testNumber'));
+        return $newComment;
+    }
+     public function onlineComment(){
+         $onlineComment = $this->sqlPrepare2($this->sqlOnlineComment, $this->testNumberCom());
+         return $onlineComment;
+
+     }
+
+     public function offlineComment(){
+         $offlineComment = $this->sqlPrepare2($this->sqlOfflineComment);
+         return $offlineComment;
+     }
+
     /**
      *  Permet de tester si le $_GET du commentaire est bien un nombre.
      * @return array Retourne un tableau avec le nombre.
@@ -33,16 +71,16 @@ class Comment extends Article {
      * @return bool
      */
     public function testComment(){
-        $return = (!empty($_POST['author'] && !empty($_POST['comment'])));
+        $return = (!empty($_POST['author'] && !empty($_POST['comment'])&& !empty($_POST['email'])));
         return $return;
     }
 
     /**
      * Permet de garder en mémoire une valeur si les autres sont vides.
-     * @param $empty Première valeur possiblement vide.
-     * @param $empty2 Seconde valeur possiblement vide.
-     * @param $keep Valeur à sauvegarder.
-     * @return mixed Tableau avec la valeur à sauvegarder.
+     * @param $empty string Première valeur possiblement vide.
+     * @param $empty2 string Seconde valeur possiblement vide.
+     * @param $keep string Valeur à sauvegarder.
+     * @return mixed array avec la valeur à sauvegarder.
      */
     public function keepValueComment($empty,$empty2, $keep){
         if((empty($_POST[$empty]) || empty($_POST[$empty2])) && !empty($_POST[$keep])){
@@ -54,9 +92,12 @@ class Comment extends Article {
      * Vérifie si le $_Post du commentaire n'est pas vide
      * @return array Tableau prêt pour une requête SQL avec comment en valeur.
      */
-    public function checkValueEditComment(){
+    public function checkValueEditComment($function = null){
         extract($_POST);
         $articleArray = array('comment' => $comment);
+        if($function){
+            $articleArray = array_merge($articleArray, $this->$function());
+        }
         return $articleArray;
     }
 
@@ -64,36 +105,16 @@ class Comment extends Article {
      * Vérifie si le $_Post de l'auteur, de l'email et du commentaire ne sont pas vides.
      * @return array Tableau prêt pour une requête SQL avec l'auteur, l'email et le commentaire.
      */
-    public function checkValueComment(){
+    public function checkValueComment($function = null){
         extract($_POST);
         $author = htmlspecialchars($author);
         $email = htmlspecialchars($email);
+        $comment = htmlspecialchars($comment);
         $articleArray = array('author'=> $author, 'email' => $email,  'comment' => $comment);
+        if(($function) && ($function == 'testNumber' || $function == 'testNumberCom()')){
+            $articleArray = array_merge($articleArray, $this->$function());
+        }
         return $articleArray;
-    }
-
-    /**
-     * @return array Retourne tableau avec le $_Post de vérifié et le numero de l'article.
-     */
-    public function testNumberAndCheckComment(){
-        $testAndCheck = array_merge($this->testNumber(), $this->checkValueComment());
-        return $testAndCheck;
-    }
-
-    /**
-     * @return array Retourne tableau avec le $_Post de vérifié et le numero du commentaire.
-     */
-    public function testAndCheckComment(){
-        $testAndCheck = array_merge($this->testNumberCom(), $this->checkValueComment());
-        return $testAndCheck;
-    }
-
-    /**
-     * @return array Retourne tableau avec le commentaire de vérifié et le numero du commentaire.
-     */
-    public function testAndCheckEditComment(){
-        $testAndCheck = array_merge($this->testNumberCom(), $this->checkValueEditComment());
-        return $testAndCheck;
     }
 
     public function getNumber(){
@@ -103,12 +124,12 @@ class Comment extends Article {
     }
 
     /**
-     * @param $data Verifie sur la requête SQL si le commentaire à été ou non modifié.
+     * @param $data array sur la requête SQL si le commentaire à été ou non modifié.
      * @return string Retourne un message d'erreur.
      */
     public function commentEdit($data){
         if($data['edit'] === 'on'){
-            return '<p class="editAdmin">Commentaire editer par l\'administrateur</p>';
+            return '<p class="editAdmin">Commentaire edité par l\'administrateur</p>';
         }
     }
 
@@ -127,13 +148,4 @@ class Comment extends Article {
             return $commentAdmin;
         }
     }
-
-    /**
-     * @return array Retourne un array vide
-     */
-    public function emptyArray(){
-        $emptyArray = array();
-        return $emptyArray;
-    }
-
 }

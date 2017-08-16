@@ -7,12 +7,12 @@ class TemplateArticle extends  Biography {
      * Permet de visualiser tous les articles.
      * @param $type Fonction admin().
      */
-    protected function htmlAllArticle($type){
+    protected function htmlAllArticle($type, $request){
         ?>
         <section id="section1">
             <?php
             $this->buttonNewArticle($type);
-            while ($data = $this->request->fetch()){
+            while ($data = $request->fetch()){
                 ?>
                 <div class="article">
                     <a href="<?= 'index.php?action=article&number='.$data['id'].''?>"><h2><?= $data['title'] ?></h2>
@@ -120,8 +120,8 @@ class TemplateArticle extends  Biography {
     /**
      * Permet de visualiser un formulaire de modification d'article.
      */
-    public function editArticle(){
-        while ($data = $this->request->fetch()) {
+    public function htmlEditArticle($request){
+        while ($data = $request->fetch()) {
             ?>
             <section>
                 <form class="form" method="post" action=<?= "index.php?action=sendEdit&number=" . $data['id'] . "" ?>>
@@ -143,10 +143,11 @@ class TemplateArticle extends  Biography {
 
     /**
      * Permet de visualiser un seul article.
-     * @param $type Fonction admin().
+     * @param $type string Fonction admin().
+     * @param
      */
-    public function oneArticle($type){
-        while ($data = $this->request->fetch()){
+    public function htmlOneArticle($type, $request){
+        while ($data = $request->fetch()){
             if(!empty($_GET['online'])&& $_GET['online'] == "wait" ){
                 echo '<p class="wait">Veuillez attendre que l\'administrateur valide votre commentaire, s\'il vous plait.</p>';
             }

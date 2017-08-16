@@ -5,8 +5,8 @@ class TemplateBiography extends TemplateContact {
     /**
      * Permet d'afficher la biographie de l'auteur et sa photo.
      */
-    public function seeBiography(){
-        $data2 = $this->request->fetch();
+    public function htmlBiography($request){
+        $data2 = $request->fetch();
         ?>
         <section id="section2">
             <?php
@@ -41,8 +41,8 @@ class TemplateBiography extends TemplateContact {
     /**
      * Permet de visualiser un formulaire de modification de la biographie.
      */
-    public function editBiography(){
-        while($data = $this->request->fetch()) {
+    public function htmlEditBiography($request){
+        while($data = $request->fetch()) {
             ?>
             <div class="editBiography">
                 <h2>Modifier ma biography</h2>

@@ -3,12 +3,7 @@
 require 'Autoloader.php';
 Autoloader::register();
 
-?>
-
-<?php
-
 $article = new Controller();
-$bio =new Controller();
 $article->blog();
 
 

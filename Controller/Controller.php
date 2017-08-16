@@ -14,7 +14,7 @@ class Controller extends AdminController {
             $this->action();
         }
         else{
-            $this->seeAllArticle();
+            $this->prepareSeeAllArticle();
             $this->prepareBiography();
         }
 
@@ -81,8 +81,8 @@ class Controller extends AdminController {
         elseif ($this->action == "sendEditBiography"){
             $this->sendEditBiographyAdmin();
         }
-        elseif ($this->action == "sendEmail"){
-            $this->prepareEmail();
+        elseif ($this->action == "ml"){
+            $this->seeLegal();
         }
     }
 

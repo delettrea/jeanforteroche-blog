@@ -13,10 +13,20 @@ class Contact extends Login{
      */
     public function message(){
         extract($_POST);
-        $this->message = $mail;
+        $this->message = htmlspecialchars($mail);
         $this->objet = htmlspecialchars($object);
         $this->expediteur = htmlspecialchars($name);
-        $this->email = $email;
+        $this->email = htmlspecialchars($email);
+    }
+
+    public function email($function){
+        $this->message();
+        if(!empty($this->message)&& !empty($this->objet)&& !empty($this->expediteur)&& !empty($this->email)){
+            $this->$function();
+        }
+        else{
+            $this->sendEmail();
+        }
     }
 
     /**

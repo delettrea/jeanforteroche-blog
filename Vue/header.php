@@ -11,7 +11,7 @@ ob_start();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css?family=Abel|Amatic+SC|Poiret+One|Quicksand" rel="stylesheet">
-    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=yy6svq6q7w2tiwlnktkgwh4b5b4uy5gfii32jgaazrelgmvd"></script>
     <script>tinymce.init({ selector:'textarea' });</script>
     <title>Blog</title>
 </head>

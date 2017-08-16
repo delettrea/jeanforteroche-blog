@@ -216,7 +216,7 @@ h2{
 .editAdmin{
     font-size: 0.8em;
     margin-top: 20px;
-    color: rgba(0, 0, 0, 0.21);
+    color: #4CAF50;
 }
 
 .author_comment{
@@ -361,6 +361,17 @@ footer a{
 
 form .button{
     margin: 35px 0;
+}
+
+.mLegal{
+    background-color: white;
+    max-width:1000px;
+    margin: auto;
+    padding: 12px 8px;
+}
+
+.mLegal a{
+    color: black;
 }
 
 

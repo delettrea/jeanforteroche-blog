@@ -25,6 +25,37 @@ class Article extends Sql {
         }
     }
 
+
+    public function allArticle(){
+        $allArticle = $this->sqlPrepare2($this->sqlViewAllArticle);
+        return $allArticle;
+    }
+
+    public function oneArticle(){
+        $oneArticle = $this->sqlPrepare2($this->sqlViewOneArticle, $this->testNumber());
+        return $oneArticle;
+    }
+
+    public function sendArticle(){
+        $sendArticle = $this->sqlPrepare2($this->sqlAdd, $this->checkValue());
+        return $sendArticle;
+    }
+
+    public function editArticle(){
+        $editArticle = $this->sqlPrepare2($this->sqlViewEdit, $this->testNumber());
+        return $editArticle;
+    }
+
+    public function sendEditThisArticle(){
+        $sendEditArticle = $this->sqlPrepare2($this->sqlEdit, $this->checkValue('testNumber'));
+        return $sendEditArticle;
+    }
+
+    public function deleteArticle(){
+        $deleteArticle = $this->sqlPrepare2($this->sqlDelete, $this->testNumber());
+        return $deleteArticle;
+    }
+
     /**
      * Test si le $_Post n'est pas vide sur chacun de ses paramètres.
      * @return bool
@@ -37,20 +68,15 @@ class Article extends Sql {
     /**
      * @return array Retourne un tableau prêt pour compléter une requête SQL.
      */
-    public function checkValue(){
+    public function checkValue($function = null){
         extract($_POST);
         $title = htmlspecialchars($title);
         $articleArray = array('author'=> $_SESSION['login'], 'title' => $title, 'article' => $article);
+        if($function){
+            $articleArray = array_merge($articleArray, $this->$function());
+        }
         return $articleArray;
 
-    }
-
-    /**
-     * @return array Retourne un tableau avec des paramètres pour les requêtes SQL avec le numéro en $_Get.
-     */
-    public function testAndCheck(){
-        $testAndCheck = array_merge($this->testNumber(), $this->checkValue());
-        return $testAndCheck;
     }
 
 }

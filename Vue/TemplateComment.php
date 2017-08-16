@@ -4,12 +4,13 @@ class TemplateComment extends TemplateArticle {
 
     /**
      * Permet de visualiser tous les commentaire d'un article.
+     * @param string sql
      */
-    public function htmlAllComment(){
+    public function htmlAllComment($request){
         ?>
         <div class="allComment">
             <?php
-            while ($data = $this->request->fetch()) {
+            while ($data = $request->fetch()) {
                 ?>
                 <div class="comment">
                     <p><span class="author_comment"><?= $this->seeEmail($data) ?> </span> <br> <span class="span_comment">le <?php echo $data['com_day']; ?>
@@ -70,7 +71,7 @@ class TemplateComment extends TemplateArticle {
     /**
      * Permet de visualiser de quoi créer un nouveau commentaire.
      */
-    public function NewComment(){
+    public function htmlNewComment(){
         ?>
         <section class="newComment">
             <form class="form" method="post" action="index.php?action=sendNewComment&number=<?= $this->getNumber()?>">
@@ -97,8 +98,8 @@ class TemplateComment extends TemplateArticle {
     /**
      * Permet de visualiser de quoi éditer un nouveau commentaire.
      */
-    public function editComment(){
-        while ($data = $this->request->fetch()){
+    public function htmlEditComment($request){
+        while ($data = $request->fetch()){
             ?>
             <section>
                 <form class="form" method="post" action=<?= "index.php?action=sendEditComment&number=".$data['id_article']."&numberCom=" . $data['id_com'] . ""?>>
@@ -115,11 +116,12 @@ class TemplateComment extends TemplateArticle {
 
     }
 
+
     /**
      * Permet d'avertir l'administrateur s'il a des commentaires à valider.
      */
-    public function offlineComment(){
-        $nb = $this->request->rowCount();
+    public function htmlWithOfflineComment($request){
+        $nb = $request->rowCount();
         if($nb >= 1){
             if (!empty($_SESSION) && $_SESSION['authorization_user'] == "admin") {
                 ?>
@@ -131,14 +133,15 @@ class TemplateComment extends TemplateArticle {
         }
     }
 
+
     /**
      * Permet à l'administrateur de voir les commentaires hors ligne.
      */
-    public function seeOffline(){
+    public function htmlSeeOfflineComment($request){
         ?>
         <div class="allComment">
             <?php
-            while ($data = $this->request->fetch()) {
+            while ($data = $request->fetch()) {
                 ?>
                 <div class="comment">
                     <p> <span class="grey">Article :</span><?= $data['title'] ?></p>

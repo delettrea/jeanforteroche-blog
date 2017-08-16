@@ -5,6 +5,12 @@ class Login extends Comment {
     public $errorAdmin = "<p class='error'> Vous devez être administrateur pour acceder à cette page </p>";
     public $sqlLogin = "SELECT id, authorization_user, login, COUNT(id) AS findLogin FROM users WHERE `login` =:login AND `password` =:password";
 
+
+    public function sendThisLogin(){
+        $sendLogin = $this->sqlPrepare2($this->sqlLogin, $this->checkValueLogin());
+        return $sendLogin;
+    }
+
     /**
      * Envoie un message d'erreur si le name de l'input passé en paramètre est vide.
      * @param $name Nom du champ a vérifié.
@@ -81,17 +87,16 @@ class Login extends Comment {
 
     /**
      * Permet de vérifier si tous les paramètres de connexion sont exacts.
-     * @param $function Fonction à lancer si les données sont fausses.
+     * @param $function string à lancer si les données sont fausses.
      */
-    public function log($function){
-        while ($data = $this->request->fetch()){
+    public function log($function, $request){
+        while ($data = $request->fetch()){
             if($data['findLogin'] == 1){
                 $_SESSION['login'] = $data['login'];
                 $_SESSION['authorization_user'] = $data['authorization_user'];
-                header('location: index.php');
             }
             elseif ($data['findLogin'] != 1){
-                $function;
+                $this->$function();
                 echo '<p class="error bottom-error">connexion impossible, veuillez verifier votre pseudo et votre mot de passe</p>';
             }
         }
