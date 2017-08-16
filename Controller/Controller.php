@@ -20,7 +20,7 @@ class Controller extends AdminController {
 
     }
 
-    public function action(){
+    protected function action(){
         if ($this->action == "new") {
             $this->createArticle();
         }

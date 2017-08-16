@@ -5,7 +5,7 @@ class TemplateLogin extends TemplateComment {
     /**
      * Formulaire de connexion au site.
      */
-    public function htmlLogin(){
+    protected function htmlLogin(){
         ?>
         <form class="login" method="post" action="<?php echo 'index.php?action=sendLogin' ?>">
             <div>

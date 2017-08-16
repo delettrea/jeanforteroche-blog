@@ -2,16 +2,16 @@
 
 class Contact extends Login{
 
-    public $message;
-    public $objet;
-    public $expediteur;
-    public $email;
-    public $destinataire = 'aline.delettre4@gmail.com';
+    protected $message;
+    protected $objet;
+    protected $expediteur;
+    protected $email;
+    protected $destinataire = 'aline.delettre4@gmail.com';
 
     /**
      * Permet de vérifier le $_Post du formulaire de contact.
      */
-    public function message(){
+    protected function message(){
         extract($_POST);
         $this->message = htmlspecialchars($mail);
         $this->objet = htmlspecialchars($object);
@@ -19,7 +19,7 @@ class Contact extends Login{
         $this->email = htmlspecialchars($email);
     }
 
-    public function email($function){
+    protected function email($function){
         $this->message();
         if(!empty($this->message)&& !empty($this->objet)&& !empty($this->expediteur)&& !empty($this->email)){
             $this->$function();
@@ -32,7 +32,7 @@ class Contact extends Login{
     /**
      * Envoie un mail suite au formulaire de contact.
      */
-    public function sendEmail(){
+    protected function sendEmail(){
         $this->message();
         $destinataire = $this->destinataire;
         $expediteur = $this->expediteur;

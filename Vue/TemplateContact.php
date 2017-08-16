@@ -5,7 +5,7 @@ class TemplateContact extends TemplateLogin{
     /**
      * Formulaire permettant de prendre contact avec l'auteur du blog.
      */
-    public function contact(){
+    protected function contact(){
         ?>
         <section class="contact">
             <form class="form" method="post" action=<?= "index.php?action=sendEmail" ?>>

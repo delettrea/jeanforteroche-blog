@@ -6,7 +6,7 @@ class TemplateComment extends TemplateArticle {
      * Permet de visualiser tous les commentaire d'un article.
      * @param string sql
      */
-    public function htmlAllComment($request){
+    protected function htmlAllComment($request){
         ?>
         <div class="allComment">
             <?php
@@ -33,7 +33,7 @@ class TemplateComment extends TemplateArticle {
      * @param $data Requête sql.
      * @return string Renvoie le nom de la personne avec ou non son email.
      */
-    public function seeEmail($data){
+    protected function seeEmail($data){
         if(!empty($_SESSION) && $_SESSION['authorization_user'] == "admin"){
             return "<a class='e-mail' href='".$data['email']."'>".$data['author']."</a>";
         }
@@ -46,7 +46,7 @@ class TemplateComment extends TemplateArticle {
      * Afficher les boutons de gestion de l'administrateur pour les commentaires.
      * @param $data $data requête sql heritée de htmlAllComment().
      */
-    public function buttonAllCommentAdmin($data){
+    protected function buttonAllCommentAdmin($data){
         if(!empty($_SESSION) && $_SESSION['authorization_user'] == "admin") {
             if($data['online'] == "off") {
                 ?>
@@ -71,7 +71,7 @@ class TemplateComment extends TemplateArticle {
     /**
      * Permet de visualiser de quoi créer un nouveau commentaire.
      */
-    public function htmlNewComment(){
+    protected function htmlNewComment(){
         ?>
         <section class="newComment">
             <form class="form" method="post" action="index.php?action=sendNewComment&number=<?= $this->getNumber()?>">
@@ -98,7 +98,7 @@ class TemplateComment extends TemplateArticle {
     /**
      * Permet de visualiser de quoi éditer un nouveau commentaire.
      */
-    public function htmlEditComment($request){
+    protected function htmlEditComment($request){
         while ($data = $request->fetch()){
             ?>
             <section>
@@ -120,7 +120,7 @@ class TemplateComment extends TemplateArticle {
     /**
      * Permet d'avertir l'administrateur s'il a des commentaires à valider.
      */
-    public function htmlWithOfflineComment($request){
+    protected function htmlWithOfflineComment($request){
         $nb = $request->rowCount();
         if($nb >= 1){
             if (!empty($_SESSION) && $_SESSION['authorization_user'] == "admin") {
@@ -137,7 +137,7 @@ class TemplateComment extends TemplateArticle {
     /**
      * Permet à l'administrateur de voir les commentaires hors ligne.
      */
-    public function htmlSeeOfflineComment($request){
+    protected function htmlSeeOfflineComment($request){
         ?>
         <div class="allComment">
             <?php
@@ -158,7 +158,7 @@ class TemplateComment extends TemplateArticle {
         <?php
     }
 
-    public function htmlDeleteComment(){
+    protected function htmlDeleteComment(){
         if((isset($_GET['numberCom']) && isset($_GET['number'])) && preg_match('#[0-9]#',$_GET['number']) && preg_match('#[0-9]#',$_GET['numberCom'])){
             ?>
             <div class="confirmDelete">

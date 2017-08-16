@@ -2,7 +2,7 @@
 
 class TemplateLegal extends TemplateBiography {
 
-    public function seeLegal(){
+    protected function seeLegal(){
         ?>
         <section class="mLegal">
             <h2>Informations légales</h2>

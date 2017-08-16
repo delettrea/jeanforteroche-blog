@@ -2,55 +2,55 @@
 
 class Comment extends Article {
 
-    public $sqlAllComment = "SELECT id ,online , edit,DATE_FORMAT(comment.date, '%d/%m/%Y') AS com_day,DATE_FORMAT(comment.date, '%Hh%i') AS com_hour, email,id_com, comment.author, comment, id_article
+    protected $sqlAllComment = "SELECT id ,online , edit,DATE_FORMAT(comment.date, '%d/%m/%Y') AS com_day,DATE_FORMAT(comment.date, '%Hh%i') AS com_hour, email,id_com, comment.author, comment, id_article
                                   FROM article INNER JOIN comment
                                   ON article.id = comment.id_article
                                   WHERE id =:number AND (online = 'on' OR online=:online) ORDER BY comment.date DESC";
-    public $sqlDeleteComment = "DELETE FROM comment WHERE id_com =:numberCom";
-    public $sqlDeleteAllComment = "DELETE FROM comment WHERE id_article=:number";
-    public $sqlAddComment = "INSERT INTO comment(id_article, author, email, comment, date, edit, online) VALUES (:number,:author,:email,:comment,NOW(), 'off', 'off')";
-    public $sqlViewEditComment = "SELECT id_com,id_article, comment FROM `comment` WHERE id_com=:numberCom";
-    public $sqlEditComment = "UPDATE comment SET comment=:comment,date=NOW(), edit='on' WHERE id_com=:numberCom";
-    public $sqlOnlineComment = "UPDATE comment SET online='on'WHERE id_com=:numberCom";
-    public $sqlOfflineComment = "SELECT `id_com`,comment.online, `id_article`, comment.author, article.id, `comment`, title, comment.date as date 
+    protected $sqlDeleteComment = "DELETE FROM comment WHERE id_com =:numberCom";
+    protected $sqlDeleteAllComment = "DELETE FROM comment WHERE id_article=:number";
+    protected $sqlAddComment = "INSERT INTO comment(id_article, author, email, comment, date, edit, online) VALUES (:number,:author,:email,:comment,NOW(), 'off', 'off')";
+    protected $sqlViewEditComment = "SELECT id_com,id_article, comment FROM `comment` WHERE id_com=:numberCom";
+    protected $sqlEditComment = "UPDATE comment SET comment=:comment,date=NOW(), edit='on' WHERE id_com=:numberCom";
+    protected $sqlOnlineComment = "UPDATE comment SET online='on'WHERE id_com=:numberCom";
+    protected $sqlOfflineComment = "SELECT `id_com`,comment.online, `id_article`, comment.author, article.id, `comment`, title, comment.date as date 
                                  FROM `comment` INNER JOIN article ON comment.id_article = article.id 
                                  WHERE comment.online = 'off' ORDER BY date DESC";
 
 
 
 
-    public function allComment(){
-        $allComment = $this->sqlPrepare2($this->sqlAllComment, $this->commentAdmin());
+    protected function allComment(){
+        $allComment = $this->sqlPrepare($this->sqlAllComment, $this->commentAdmin());
         return $allComment;
     }
 
-    public function deleteThisComment(){
-        $deleteComment = $this->sqlPrepare2($this->sqlDeleteAllComment, $this->testNumber());
+    protected function deleteThisComment(){
+        $deleteComment = $this->sqlPrepare($this->sqlDeleteAllComment, $this->testNumber());
         return $deleteComment;
     }
 
-    public function editComment(){
-        $editComment = $this->sqlPrepare2($this->sqlViewEdit, $this->testNumber());
+    protected function editComment(){
+        $editComment = $this->sqlPrepare($this->sqlViewEdit, $this->testNumber());
         return $editComment;
     }
 
-    public function sendEditComment(){
-        $sendEditComment = $this->sqlPrepare2($this->sqlEditComment, $this->checkValueEditComment('testNumberCom'));
+    protected function sendEditComment(){
+        $sendEditComment = $this->sqlPrepare($this->sqlEditComment, $this->checkValueEditComment('testNumberCom'));
         return $sendEditComment;
     }
 
-    public function newComment(){
-        $newComment = $this->sqlPrepare2($this->sqlAddComment, $this->checkValueComment('testNumber'));
+    protected function newComment(){
+        $newComment = $this->sqlPrepare($this->sqlAddComment, $this->checkValueComment('testNumber'));
         return $newComment;
     }
-     public function onlineComment(){
-         $onlineComment = $this->sqlPrepare2($this->sqlOnlineComment, $this->testNumberCom());
+     protected function onlineComment(){
+         $onlineComment = $this->sqlPrepare($this->sqlOnlineComment, $this->testNumberCom());
          return $onlineComment;
 
      }
 
-     public function offlineComment(){
-         $offlineComment = $this->sqlPrepare2($this->sqlOfflineComment);
+     protected function offlineComment(){
+         $offlineComment = $this->sqlPrepare($this->sqlOfflineComment);
          return $offlineComment;
      }
 
@@ -70,7 +70,7 @@ class Comment extends Article {
      * Test si le $_Post du commentaire n'est pas vide sur chacun de ses paramètres.
      * @return bool
      */
-    public function testComment(){
+    protected function testComment(){
         $return = (!empty($_POST['author'] && !empty($_POST['comment'])&& !empty($_POST['email'])));
         return $return;
     }
@@ -82,7 +82,7 @@ class Comment extends Article {
      * @param $keep string Valeur à sauvegarder.
      * @return mixed array avec la valeur à sauvegarder.
      */
-    public function keepValueComment($empty,$empty2, $keep){
+    protected function keepValueComment($empty,$empty2, $keep){
         if((empty($_POST[$empty]) || empty($_POST[$empty2])) && !empty($_POST[$keep])){
             return $_POST[$keep];
         }
@@ -92,7 +92,7 @@ class Comment extends Article {
      * Vérifie si le $_Post du commentaire n'est pas vide
      * @return array Tableau prêt pour une requête SQL avec comment en valeur.
      */
-    public function checkValueEditComment($function = null){
+    protected function checkValueEditComment($function = null){
         extract($_POST);
         $articleArray = array('comment' => $comment);
         if($function){
@@ -105,7 +105,7 @@ class Comment extends Article {
      * Vérifie si le $_Post de l'auteur, de l'email et du commentaire ne sont pas vides.
      * @return array Tableau prêt pour une requête SQL avec l'auteur, l'email et le commentaire.
      */
-    public function checkValueComment($function = null){
+    protected function checkValueComment($function = null){
         extract($_POST);
         $author = htmlspecialchars($author);
         $email = htmlspecialchars($email);
@@ -117,7 +117,7 @@ class Comment extends Article {
         return $articleArray;
     }
 
-    public function getNumber(){
+    protected function getNumber(){
         extract($this->testNumber());
         $getNumber = $number;
         return $getNumber;
@@ -127,7 +127,7 @@ class Comment extends Article {
      * @param $data array sur la requête SQL si le commentaire à été ou non modifié.
      * @return string Retourne un message d'erreur.
      */
-    public function commentEdit($data){
+    protected function commentEdit($data){
         if($data['edit'] === 'on'){
             return '<p class="editAdmin">Commentaire edité par l\'administrateur</p>';
         }
@@ -136,7 +136,7 @@ class Comment extends Article {
     /**
      * @return array Permet de montrer tous les commentaires si on est Admin ou seulement ceux en ligne.
      */
-    public function commentAdmin(){
+    protected function commentAdmin(){
         if(!empty($_SESSION) && $_SESSION['authorization_user'] == "admin"){
             $on = array(':online' => 'off');
             $commentAdmin = array_merge($this->testNumber(), $on);

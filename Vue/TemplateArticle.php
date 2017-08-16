@@ -39,7 +39,7 @@ class TemplateArticle extends  Biography {
      * Afficher le bouton de création d'article de l'administrateur.
      * @param $type $type hérité de la fonction htmlAllArticle().
      */
-    public function buttonNewArticle($type){
+    protected function buttonNewArticle($type){
         if($type == "admin"){
             ?>
             <div class="buttonNewArticle">
@@ -54,7 +54,7 @@ class TemplateArticle extends  Biography {
      * @param $type $type hérité de la fonction htmlAllArticle().
      * @param $data $data hérité de la fonction htmlAllArticle().
      */
-    public function buttonArticleAdmin($type, $data){
+    protected function buttonArticleAdmin($type, $data){
         if($type == "admin") {
             ?>
             <div class="buttonAdmin">
@@ -97,7 +97,7 @@ class TemplateArticle extends  Biography {
     /**
      * Permet de visualiser de quoi créer un nouvel article.
      */
-    public function newArticle(){
+    protected function newArticle(){
         ?>
         <section>
             <form class="form" method="post" action="index.php?action=sendNew">
@@ -120,7 +120,7 @@ class TemplateArticle extends  Biography {
     /**
      * Permet de visualiser un formulaire de modification d'article.
      */
-    public function htmlEditArticle($request){
+    protected function htmlEditArticle($request){
         while ($data = $request->fetch()) {
             ?>
             <section>
@@ -146,7 +146,7 @@ class TemplateArticle extends  Biography {
      * @param $type string Fonction admin().
      * @param
      */
-    public function htmlOneArticle($type, $request){
+    protected function htmlOneArticle($type, $request){
         while ($data = $request->fetch()){
             if(!empty($_GET['online'])&& $_GET['online'] == "wait" ){
                 echo '<p class="wait">Veuillez attendre que l\'administrateur valide votre commentaire, s\'il vous plait.</p>';
@@ -171,7 +171,7 @@ class TemplateArticle extends  Biography {
      * Afficher les boutons de gestion de l'administrateur pour un article.
      * @param $type $type hérité de la fonction oneArticle().
      */
-    public function buttonOneArticle($type){
+    protected function buttonOneArticle($type){
         if($type == "admin"){
             ?>
             <div class="editComment">
@@ -185,7 +185,7 @@ class TemplateArticle extends  Biography {
         }
     }
 
-    public function htmlDeleteArticle(){
+    protected function htmlDeleteArticle(){
         if(isset($_GET['number']) && preg_match('#[0-9]#',$_GET['number'])){
             ?>
             <div class="confirmDelete">

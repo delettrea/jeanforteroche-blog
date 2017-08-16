@@ -6,16 +6,13 @@
  */
 class Sql extends Data{
 
-
-    public $request;
-
     /**
      * Permet de lancer une requête sql prepare ou une requête query.
      * @param $sql string Requête SQL.
      * @param $array array ou vide permettant de le lancer execute après le prepare ou de faire un query.
      * @return pdoStatement requête sql
      */
-     protected function sqlPrepare2($sql,$array = null){
+     protected function sqlPrepare($sql,$array = null){
          if($array){
              $request=$this->bdd->prepare($sql);
              $request->execute($array);
@@ -27,11 +24,5 @@ class Sql extends Data{
          }
 
      }
-
-    protected function sqlPrepare($sql,$array){
-        $this->request=$this->bdd->prepare($sql);
-        $this->request->execute($array);
-    }
-
 
 }

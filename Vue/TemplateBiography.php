@@ -5,7 +5,7 @@ class TemplateBiography extends TemplateContact {
     /**
      * Permet d'afficher la biographie de l'auteur et sa photo.
      */
-    public function htmlBiography($request){
+    protected function htmlBiography($request){
         $data2 = $request->fetch();
         ?>
         <section id="section2">
@@ -27,7 +27,7 @@ class TemplateBiography extends TemplateContact {
     /**
      * Afficher les boutons de gestion de l'administrateur pour la biographie.
      */
-    public function buttonBiography(){
+    protected function buttonBiography(){
         if(!empty($_SESSION) && $_SESSION['authorization_user'] == 'admin'){
             ?>
             <div class="biography">
@@ -41,7 +41,7 @@ class TemplateBiography extends TemplateContact {
     /**
      * Permet de visualiser un formulaire de modification de la biographie.
      */
-    public function htmlEditBiography($request){
+    protected function htmlEditBiography($request){
         while($data = $request->fetch()) {
             ?>
             <div class="editBiography">
