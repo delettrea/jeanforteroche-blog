@@ -185,6 +185,9 @@ class TemplateArticle extends  Biography {
         }
     }
 
+    /**
+     * Fonction affichant une demande de confirmation pour supprimer un article.
+     */
     protected function htmlDeleteArticle(){
         if(isset($_GET['number']) && preg_match('#[0-9]#',$_GET['number'])){
             ?>

@@ -17,41 +17,73 @@ class Comment extends Article {
                                  WHERE comment.online = 'off' ORDER BY date DESC";
 
 
-
+    /**
+     * Fonction sql permettant de voir tous les commentaires.
+     * @return pdoStatement
+     */
     protected function allComment(){
         $allComment = $this->sqlPrepare($this->sqlAllComment, $this->commentAdmin());
         return $allComment;
     }
 
+    /**
+     * Fonction sql permettant de surrpimer un seul commentaire.
+     * @return pdoStatement
+     */
     protected function deleteThisComment(){
         $deleteComment = $this->sqlPrepare($this->sqlDeleteComment, $this->testNumberCom());
         return $deleteComment;
     }
 
+    /**
+     * Fonction sql permettant de surrpimer tous les commentaires.
+     * @return pdoStatement
+     */
     protected function deleteComment(){
         $deleteComment = $this->sqlPrepare($this->sqlDeleteAllComment, $this->testNumber());
         return $deleteComment;
     }
 
+    /**
+     * Fonction sql permettant d'éditer un commentaire.
+     * @return pdoStatement
+     */
     protected function editComment(){
         $editComment = $this->sqlPrepare($this->sqlViewEditComment, $this->testNumberCom());
         return $editComment;
     }
 
+    /**
+     * Fonction sql permettant d'envoyer la modification d'un commentaire.
+     * @return pdoStatement
+     */
     protected function sendEditThisComment(){
         $sendEditComment = $this->sqlPrepare($this->sqlEditComment, $this->checkValueEditComment('testNumberCom'));
         return $sendEditComment;
     }
 
+    /**
+     * Fonction sql permettant de créer un commentaire.
+     * @return pdoStatement
+     */
     protected function newComment(){
         $newComment = $this->sqlPrepare($this->sqlAddComment, $this->checkValueComment('testNumber'));
         return $newComment;
     }
+
+    /**
+     * Fonction sql permettant de mettre en ligne un commentaire.
+     * @return pdoStatement
+     */
      protected function onlineComment(){
          $onlineComment = $this->sqlPrepare($this->sqlOnlineComment, $this->testNumberCom());
          return $onlineComment;
      }
 
+    /**
+     * Fonction sql permettant de voir les commentaires hors ligne.
+     * @return pdoStatement
+     */
      protected function offlineComment(){
          $offlineComment = $this->sqlPrepare($this->sqlOfflineComment);
          return $offlineComment;
@@ -120,6 +152,10 @@ class Comment extends Article {
         return $articleArray;
     }
 
+    /**
+     * Fonction vérifiant le nombre passé dans l'url
+     * @return mixed
+     */
     protected function getNumber(){
         extract($this->testNumber());
         $getNumber = $number;

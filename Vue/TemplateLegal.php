@@ -2,6 +2,9 @@
 
 class TemplateLegal extends TemplateBiography {
 
+    /**
+     * Fonction permettant de montrer les mentions légales.
+     */
     protected function seeLegal(){
         ?>
         <section class="mLegal">

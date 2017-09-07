@@ -159,6 +159,9 @@ class TemplateComment extends TemplateArticle {
         <?php
     }
 
+    /**
+     * Fonction affichant une demande de confirmation pour supprimer un commentaire.
+     */
     protected function htmlDeleteComment(){
         if((isset($_GET['numberCom']) && isset($_GET['number'])) && preg_match('#[0-9]#',$_GET['number']) && preg_match('#[0-9]#',$_GET['numberCom'])){
             ?>

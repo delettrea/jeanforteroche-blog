@@ -25,32 +25,55 @@ class Article extends Sql {
         }
     }
 
-
+    /**
+     * Fonction sql permettant de voir tous les articles.
+     * @return pdoStatement
+     */
     protected function allArticle(){
         $allArticle = $this->sqlPrepare($this->sqlViewAllArticle);
         return $allArticle;
     }
 
+    /**
+     * Fonction sql permettant de voir un article.
+     * @return pdoStatement
+     */
     protected function oneArticle(){
         $oneArticle = $this->sqlPrepare($this->sqlViewOneArticle, $this->testNumber());
         return $oneArticle;
     }
 
+    /**
+     * Fonction sql permettant d'envoyer un nouvel article.
+     * @return pdoStatement
+     */
     protected function sendArticle(){
         $sendArticle = $this->sqlPrepare($this->sqlAdd, $this->checkValue());
         return $sendArticle;
     }
 
+    /**
+     * Fonction sql permettant d'éditer un article.
+     * @return pdoStatement
+     */
     protected function editArticle(){
         $editArticle = $this->sqlPrepare($this->sqlViewEdit, $this->testNumber());
         return $editArticle;
     }
 
+    /**
+     * Fonction sql permettant d'envoyer un article édité.
+     * @return pdoStatement
+     */
     protected function sendEditThisArticle(){
         $sendEditArticle = $this->sqlPrepare($this->sqlEdit, $this->checkValue('testNumber'));
         return $sendEditArticle;
     }
 
+    /**
+     * Fonction sql permettant de supprimer un article.
+     * @return pdoStatement
+     */
     protected function deleteArticle(){
         $deleteArticle = $this->sqlPrepare($this->sqlDelete, $this->testNumber());
         return $deleteArticle;
