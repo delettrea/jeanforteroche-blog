@@ -81,8 +81,9 @@ class HomeController extends TemplateLegal {
      */
     protected function sendLogin(){
         $this->log('login', $this->sendThisLogin());
-        header('Location: index.php');
+        header('Location:index.php');
     }
+
 
 
 

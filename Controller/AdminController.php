@@ -105,7 +105,7 @@ class AdminController extends HomeController{
      */
     protected function prepareSendEditComment(){
         if (!empty($_POST['comment'])) {
-            $this->sendEditComment();
+            $this->sendEditThisComment();
             header('Location: index.php?action=article&number='.$this->getNumber().'');
         }
         else{
@@ -113,27 +113,24 @@ class AdminController extends HomeController{
         }
     }
 
-    protected function deleteComment(){
-        $this->testAdmin('prepareDeleteComment');
+    protected function deleteJustThisComment(){
+        $this->testAdmin('deleteThisComment');
+        header('Location: index.php?action=article&number='.$this->getNumber().'');
     }
 
     /**
      * Prepare la fonction pour supprimer des commentaires.
      */
     protected function prepareDeleteComment(){
-        $this->deleteThisComment();
+        $this->deleteComment();
         $this->justOneArticle();
-    }
-
-    protected function onlineComment(){
-        $this->testAdmin('prepareOnlineComment');
     }
 
     /**
      * Prepare la fonction pour mettre en ligne un article.
      */
     protected function prepareOnlineComment(){
-        $this->onlineComment();
+        $this->testAdmin('onlineComment');
         header('Location: index.php?action=article&number='.$this->getNumber().'');
     }
 
@@ -183,6 +180,14 @@ class AdminController extends HomeController{
     protected function confirmDeleteComment(){
         $this->testAdmin('htmlDeleteComment');
     }
+
+    protected function deleteArticleComment(){
+        $this->deleteComment();
+        $this->deleteArticle();
+        header('Location:index.php');
+    }
+
+
 
 
 }

@@ -107,7 +107,7 @@ class TemplateArticle extends  Biography {
                     <?php $this->error('title') ?>
                 </div>
                 <div class="textarea">
-                    <textarea name="article" class="article" placeholder="Ecrivez votre article ici"><?php echo $this->keepValue('title','article') ?></textarea>
+                    <textarea class="textArticle" name="article" class="article" placeholder="Ecrivez votre article ici"><?php echo $this->keepValue('title','article') ?></textarea>
                     <?php $this->error('article') ?>
                 </div>
                 <input class="button" type="submit" value="Créer l'article" />
@@ -131,7 +131,7 @@ class TemplateArticle extends  Biography {
                         <?php $this->error('title') ?>
                     </div>
                     <div class="textarea">
-                        <textarea name="article" class="article"><?php echo $data['article'] ?></textarea>
+                        <textarea class="textArticle" name="article" class="article"><?php echo $data['article'] ?></textarea>
                         <?php $this->error('article') ?>
                     </div>
                     <input class="button" type="submit" value="Modifier l'article" />

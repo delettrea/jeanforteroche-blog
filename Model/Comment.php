@@ -18,23 +18,27 @@ class Comment extends Article {
 
 
 
-
     protected function allComment(){
         $allComment = $this->sqlPrepare($this->sqlAllComment, $this->commentAdmin());
         return $allComment;
     }
 
     protected function deleteThisComment(){
+        $deleteComment = $this->sqlPrepare($this->sqlDeleteComment, $this->testNumberCom());
+        return $deleteComment;
+    }
+
+    protected function deleteComment(){
         $deleteComment = $this->sqlPrepare($this->sqlDeleteAllComment, $this->testNumber());
         return $deleteComment;
     }
 
     protected function editComment(){
-        $editComment = $this->sqlPrepare($this->sqlViewEdit, $this->testNumber());
+        $editComment = $this->sqlPrepare($this->sqlViewEditComment, $this->testNumberCom());
         return $editComment;
     }
 
-    protected function sendEditComment(){
+    protected function sendEditThisComment(){
         $sendEditComment = $this->sqlPrepare($this->sqlEditComment, $this->checkValueEditComment('testNumberCom'));
         return $sendEditComment;
     }
@@ -46,7 +50,6 @@ class Comment extends Article {
      protected function onlineComment(){
          $onlineComment = $this->sqlPrepare($this->sqlOnlineComment, $this->testNumberCom());
          return $onlineComment;
-
      }
 
      protected function offlineComment(){

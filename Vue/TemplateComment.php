@@ -83,9 +83,10 @@ class TemplateComment extends TemplateArticle {
                 <div class="email">
                     <label>Votre email : </label><input type="email" name="email" placeholder="Votre email" value="<?php echo $this->keepValueComment('author','comment','email') ?>" />
                     <?php $this->error('email') ?>
+                    <p>Seul l'administrateur du site pourra voir votre email</p>
                 </div>
                 <div class="textarea">
-                    <textarea name="comment" class="comment" placeholder="Ecrivez votre commentaire ici" value="<?php echo $this->keepValueComment('email','author','comment') ?>"></textarea>
+                    <textarea name="comment" placeholder="Ecrivez votre commentaire ici" value="<?php echo $this->keepValueComment('email','author','comment') ?>"></textarea>
                     <?php $this->error('comment') ?>
                 </div>
                 <input class="button" type="submit" value="Ajouter ce commentaire" />
@@ -105,7 +106,7 @@ class TemplateComment extends TemplateArticle {
                 <form class="form" method="post" action=<?= "index.php?action=sendEditComment&number=".$data['id_article']."&numberCom=" . $data['id_com'] . ""?>>
                     <h3>Modifier un commentaire</h3>
                     <div class="textarea">
-                        <textarea name="comment" class="comment" ><?= $data['comment'] ?></textarea>
+                        <textarea name="comment" ><?= $data['comment'] ?></textarea>
                         <?php $this->error('comment') ?>
                     </div>
                     <input class="button" type="submit" value="Modifier le commentaire" />
@@ -168,7 +169,7 @@ class TemplateComment extends TemplateArticle {
                         <a class="button" id="no" href="index.php">Non</a>
                     </div>
                     <div class="delete">
-                        <a class="button" id="deleteCom" href="<?= 'index.php?action=deleteComment&number=' . $_GET['number'] . '&numberCom=' . $_GET['numberCom'] . '' ?>">Oui</a>
+                        <a class="button" id="deleteCom" href="<?= 'index.php?action=deleteThisComment&number=' . $_GET['number'] . '&numberCom=' . $_GET['numberCom'] . '' ?>">Oui</a>
                     </div>
                 </div>
             </div>

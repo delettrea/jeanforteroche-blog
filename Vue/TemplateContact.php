@@ -27,4 +27,12 @@ class TemplateContact extends TemplateLogin{
         </section>
         <?php
     }
+
+
+    protected function emailSend(){
+    ?>
+        <div class="wait">L'email a bien été envoyé</div>
+    <?php
+}
+
 }
