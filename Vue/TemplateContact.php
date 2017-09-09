@@ -8,33 +8,28 @@ class TemplateContact extends TemplateLogin{
     protected function contact(){
         ?>
         <section class="contact">
-            <form class="form" method="post" action=<?= "index.php?action=sendEmail" ?>>
-                <h2>Contacter l'auteur du blog</h2>
-                <div class="name">
-                    <label>Votre nom : </label><input type="text" name="name" placeholder="Titre de l'article" value="" "/>
+            <form class="formContact form" method="post" action="index.php?action=sendContact">
+                <div class="space white name">
+                    <label class="fade5">Votre nom : </label><input class="fade5" type="text" name="name" id="name" value="<?php echo $this->keepValueContact('email','object','mail','name') ?>"/>
                 </div>
-                <div class="email">
-                    <label>Votre email : </label><input type="email" name="email" placeholder="Titre de l'article" value="" "/>
+                <div class="space white email ">
+                    <label class="fade5">Votre email : </label><input class="fade5" type="email" name="email" id="email" placeholder=""/>
                 </div>
-                <div class="object">
-                    <label>Sujet de votre contact : </label><input type="text" name="object" placeholder="Titre de l'article" value="" "/>
+                <div class="space white object">
+                    <label class="fade5">Sujet de votre message : </label><input class="fade5" type="text" name="object" id="object" placeholder=""/>
                 </div>
-                <div class="textarea">
-                    <textarea name="mail" class="article"></textarea>
+                <div class="space white">
+                    <label class="fade5">Votre message : </label>
+                    <textarea name="mail" id="mail" class="article fade5"></textarea>
                 </div>
-                <input class="button" type="submit" value="Contacter l'auteur" />
+                <div class="space white">
+                    <input id="this" class="button fade5" type="submit" value="Contacter" />
+                </div>
             </form>
+            <div id="messages" class="space white fade5"></div>
         </section>
         <?php
     }
 
-    /**
-     * Fonction affichant un message de réussite lors de l'envoi d'un email.
-     */
-    protected function emailSend(){
-    ?>
-        <div class="wait">L'email a bien été envoyé</div>
-    <?php
-}
 
 }

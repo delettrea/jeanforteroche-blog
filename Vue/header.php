@@ -17,7 +17,6 @@ ob_start();
 </head>
 
 <body>
-
 <header>
     <div class="nav">
         <div>
