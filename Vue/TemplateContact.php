@@ -1,16 +1,14 @@
 <?php
-
 class TemplateContact extends TemplateLogin{
-
     /**
      * Formulaire permettant de prendre contact avec l'auteur du blog.
      */
     protected function contact(){
         ?>
         <section class="contact">
-            <form class="formContact form" method="post" action="index.php?action=sendContact">
+            <form class="form" method="post" action="index.php?action=sendContact">
                 <div class="space white name">
-                    <label class="fade5">Votre nom : </label><input class="fade5" type="text" name="name" id="name" value="<?php echo $this->keepValueContact('email','object','mail','name') ?>"/>
+                    <label class="fade5">Votre nom : </label><input class="fade5" type="text" name="name" id="name"/>
                 </div>
                 <div class="space white email ">
                     <label class="fade5">Votre email : </label><input class="fade5" type="email" name="email" id="email" placeholder=""/>
@@ -26,10 +24,7 @@ class TemplateContact extends TemplateLogin{
                     <input id="this" class="button fade5" type="submit" value="Contacter" />
                 </div>
             </form>
-            <div id="messages" class="space white fade5"></div>
         </section>
         <?php
     }
-
-
 }

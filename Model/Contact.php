@@ -6,14 +6,6 @@ class Contact extends Login{
     protected $email;
     protected $destinataire = 'aline.delettre4@gmail.com';
 
-
-    protected function keepValueContact($empty,$empty2,$empty3, $keep){
-        if((empty($_POST[$empty]) || empty($_POST[$empty2]) || empty($_POST[$empty3])) && !empty($_POST[$keep])){
-            return $_POST[$keep];
-        }
-    }
-
-
     /**
      * Permet de vérifier le $_Post du formulaire de contact.
      */
@@ -24,24 +16,25 @@ class Contact extends Login{
         $this->expediteur = htmlspecialchars($name);
         $this->email = htmlspecialchars($email);
     }
+
     /**
-     * Permet d'envoyer un email si les champs ne sont pas vides.
-     * @param $function
+     * Permet de vérifier le $_Post du formulaire de contact.
      */
-    protected function email(){
-        if(!empty($_POST['message']) && !empty($_POST['objet']) && !empty($_POST['expediteur']) && !empty($_POST['email']) && (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) == true)){
-           echo 'ICI';
+    public function emailTest(){
+        if(!empty($_POST['mail']) && !empty($_POST['object']) && !empty($_POST['name']) && !empty($_POST['email'])){
             $this->sendEmail();
         }
         else{
-            header('Location:index.php?action=contact');
+            $this->contact();
+            echo "<div class='error'>Veuillez remplir tous les champs pour contacter l'auteur du site</div>";
         }
     }
+
     /**
      * Envoie un mail suite au formulaire de contact.
      */
     protected function sendEmail(){
-        echo 'ICI2';
+        $this->message();
         $destinataire = $this->destinataire;
         $expediteur = $this->expediteur;
         $objet = $this->objet;

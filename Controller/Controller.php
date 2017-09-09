@@ -84,8 +84,8 @@ class Controller extends AdminController {
         elseif ($this->action == "contact"){
             $this->contact();
         }
-        elseif ($this->action == "sendEmail"){
-            $this->email();
+        elseif ($this->action == "sendContact"){
+            $this->emailTest();
         }
         elseif ($this->action == "editBiography"){
             $this->editBiographyAdmin();
