@@ -27,14 +27,4 @@ class TemplateContact extends TemplateLogin{
         </section>
         <?php
     }
-
-    /**
-     * Fonction affichant un message de réussite lors de l'envoi d'un email.
-     */
-    protected function emailSend(){
-    ?>
-        <div class="wait">L'email a bien été envoyé</div>
-    <?php
-}
-
 }

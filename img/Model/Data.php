@@ -7,9 +7,9 @@
 class Data{
 
     const HOST = 'localhost';
-    const DBNAME = 'blog';
+    const DBNAME = 'projet3';
     const USERNAME = 'root';
-    const PASSWORD = 'delettre';
+    const PASSWORD = '';
     protected $bdd;
 
     /**

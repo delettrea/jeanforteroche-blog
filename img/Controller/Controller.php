@@ -37,22 +37,19 @@ class Controller extends AdminController {
             $this->justOneArticle();
         }
         elseif ($this->action == "delete"){
-            $this->deleteArticleComment();
+            $this->deleteArticle();
         }
         elseif ($this->action == "confirmDelete"){
             $this->htmlDeleteArticle();
-        }
-        elseif($this->action == "deleteThisComment"){
-            $this->deleteJustThisComment();
         }
         elseif($this->action == "deleteComment"){
             $this->deleteComment();
         }
         elseif ($this->action == "confirmDeleteComment"){
-            $this->confirmDeleteComment();
+            $this->confirmDeleteArticle();
         }
         elseif($this->action == "newComment"){
-            $this->createComment();
+            $this->confirmDeleteComment();
         }
         elseif($this->action == "sendNewComment"){
             $this->sendNewComment();
@@ -64,7 +61,7 @@ class Controller extends AdminController {
             $this->sendEditComment();
         }
         elseif ($this->action == "online"){
-            $this->prepareOnlineComment();
+            $this->onlineComment();
         }
         elseif ($this->action == "login"){
             $this->login();
@@ -83,10 +80,6 @@ class Controller extends AdminController {
         }
         elseif ($this->action == "contact"){
             $this->contact();
-        }
-        elseif ($this->action == "sendEmail"){
-            $this->email('sendEmail');
-            $this->emailSend();
         }
         elseif ($this->action == "editBiography"){
             $this->editBiographyAdmin();

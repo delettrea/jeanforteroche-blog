@@ -19,13 +19,9 @@ class Contact extends Login{
         $this->email = htmlspecialchars($email);
     }
 
-    /**
-     * Permet d'envoyer un email si les champs ne sont pas vides.
-     * @param $function
-     */
     protected function email($function){
         $this->message();
-        if(!empty($this->message)&& !empty($this->objet)&& !empty($this->expediteur)&& !empty($this->email) && (filter_var($this->email, FILTER_VALIDATE_EMAIL) == false)){
+        if(!empty($this->message)&& !empty($this->objet)&& !empty($this->expediteur)&& !empty($this->email)){
             $this->$function();
         }
         else{
